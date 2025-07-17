@@ -10,21 +10,24 @@ export default function Navbar() {
     <nav className="bg-white/90 backdrop-blur-md shadow-lg sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
+            <a href="/">
             <div className="flex items-center">
-              <Globe className="h-8 w-8 text-blue-600 mr-2" />
-              <span className="text-2xl font-bold text-gray-900">MyBreakBuddy</span>
+              <img src="/Break-Buddy-1.png" alt="Logo" className="h-[180px] w-[200px] mt-3" />
             </div>
+            </a>
             
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-8">
-              <a href="#" className="text-gray-700 hover:text-blue-600 transition-colors">Destinations</a>
-              <a href="#" className="text-gray-700 hover:text-blue-600 transition-colors">Flights</a>
+              <a href="/Destinations" className="text-gray-700 hover:text-blue-600 transition-colors">Destinations</a>
+              <a href="/GroupTrips" className="text-gray-700 hover:text-blue-600 transition-colors">Group Trips</a>
               <a href="#" className="text-gray-700 hover:text-blue-600 transition-colors">Hotels</a>
               <a href="#" className="text-gray-700 hover:text-blue-600 transition-colors">Tours</a>
               <a href="#" className="text-gray-700 hover:text-blue-600 transition-colors">Contact</a>
               <Link to="/about" className="text-gray-700 hover:text-blue-600 transition-colors">About</Link>
+              
               <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
-                Sign In
+                <Link to="/Login">Sign In</Link>
+                
               </button>
             </div>
 

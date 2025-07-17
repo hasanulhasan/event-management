@@ -1,6 +1,12 @@
 import About from './pages/About';
 import Home from './pages/Home';
 import { Routes, Route } from 'react-router-dom';
+import Login from './pages/Login';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import Contact from './pages/Contact';
+import GroupTrips from './pages/GroupTrips';
+import DestinationExplorer from './pages/Destinations';
+import TermsConditions from './pages/TermsConditions';
 
 function App() {
   
@@ -8,6 +14,15 @@ function App() {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/about" element={<About />} />
+      <Route path="/Login" element={<Login />} />
+      <Route path="/PrivacyPolicy" element={<PrivacyPolicy />} />
+      <Route path="/Contact" element={<Contact />} />
+      <Route path="/TermsConditions" element={<TermsConditions />} />
+      <Route path="/GroupTrips" element={<GroupTrips />} />
+      <Route path="/Destinations" element={<DestinationExplorer />} />
+
+      
+      
     </Routes>
   );
 }
