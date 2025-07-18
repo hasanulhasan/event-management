@@ -7,6 +7,7 @@ import Contact from './pages/Contact';
 import GroupTrips from './pages/GroupTrips';
 import DestinationExplorer from './pages/Destinations';
 import TermsConditions from './pages/TermsConditions';
+import BlogTravelTips from './pages/BlogTravelTips';
 
 function App() {
   
@@ -20,6 +21,7 @@ function App() {
       <Route path="/TermsConditions" element={<TermsConditions />} />
       <Route path="/GroupTrips" element={<GroupTrips />} />
       <Route path="/Destinations" element={<DestinationExplorer />} />
+      <Route path="/BlogTravelTips" element={<BlogTravelTips />} />
 
       
       

@@ -21,7 +21,7 @@ export default function Navbar() {
               <a href="/Destinations" className="text-gray-700 hover:text-blue-600 transition-colors">Destinations</a>
               <a href="/GroupTrips" className="text-gray-700 hover:text-blue-600 transition-colors">Group Trips</a>
               <a href="#" className="text-gray-700 hover:text-blue-600 transition-colors">Hotels</a>
-              <a href="#" className="text-gray-700 hover:text-blue-600 transition-colors">Tours</a>
+              <a href="/BlogTravelTips" className="text-gray-700 hover:text-blue-600 transition-colors">Blog & Travel Tips</a>
               <a href="#" className="text-gray-700 hover:text-blue-600 transition-colors">Contact</a>
               <Link to="/about" className="text-gray-700 hover:text-blue-600 transition-colors">About</Link>
               
