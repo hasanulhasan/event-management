@@ -23,7 +23,7 @@ export default function Navbar() {
               <a href="#" className="text-gray-700 hover:text-blue-600 transition-colors">Hotels</a>
               <a href="/BlogTravelTips" className="text-gray-700 hover:text-blue-600 transition-colors">Blog & Travel Tips</a>
               <a href="#" className="text-gray-700 hover:text-blue-600 transition-colors">Contact</a>
-              <Link to="/about" className="text-gray-700 hover:text-blue-600 transition-colors">About</Link>
+              <Link to="/HelpSupport" className="text-gray-700 hover:text-blue-600 transition-colors">Help & Support</Link>
               
               <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
                 <Link to="/Login">Sign In</Link>
