@@ -11,8 +11,8 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <a href="/">
-            <div className="flex items-center">
-              <img src="/Break-Buddy-1.png" alt="Logo" className="h-[180px] w-[200px] mt-3" />
+            <div className="flex items-center ">
+              <img src="/Break-Buddy-4.png" alt="Logo" className="h-[60px] w-[130px]" />
             </div>
             </a>
             
@@ -23,7 +23,7 @@ export default function Navbar() {
               <a href="#" className="text-gray-700 hover:text-blue-600 transition-colors">Hotels</a>
               <a href="/BlogTravelTips" className="text-gray-700 hover:text-blue-600 transition-colors">Blog & Travel Tips</a>
               <a href="#" className="text-gray-700 hover:text-blue-600 transition-colors">Contact</a>
-              <Link to="/HelpSupport" className="text-gray-700 hover:text-blue-600 transition-colors">Help & Support</Link>
+              <a to="/HelpSupport" className="text-gray-700 hover:text-blue-600 transition-colors">Help & Support</a>
               
               <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
                 <Link to="/Login">Sign In</Link>
@@ -45,14 +45,15 @@ export default function Navbar() {
         {isMenuOpen && (
           <div className="md:hidden bg-white border-t">
             <div className="px-2 pt-2 pb-3 space-y-1">
-              <a href="#" className="block px-3 py-2 text-gray-700 hover:text-blue-600">Destinations</a>
-              <a href="#" className="block px-3 py-2 text-gray-700 hover:text-blue-600">Flights</a>
+              
+              <a href="/Destinations" className="block px-3 py-2 text-gray-700 hover:text-blue-600">Destinations</a>
+              <a href="/GroupTrips" className="block px-3 py-2 text-gray-700 hover:text-blue-600">Group Trips</a>
               <a href="#" className="block px-3 py-2 text-gray-700 hover:text-blue-600">Hotels</a>
-              <a href="#" className="block px-3 py-2 text-gray-700 hover:text-blue-600">Tours</a>
+              <a href="/BlogTravelTips" className="block px-3 py-2 text-gray-700 hover:text-blue-600">Blog & Travel Tips</a>
               <a href="#" className="block px-3 py-2 text-gray-700 hover:text-blue-600">Contact</a>
-              <Link to="/about" className="text-gray-700 hover:text-blue-600 transition-colors">About</Link>
-              <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
-                Sign In
+              <a to="/HelpSupport" className="text-gray-700 hover:text-blue-600 transition-colors">Help & Support</a>
+              <button className="bg-blue-600 text-white ml-4 px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                <Link to="/Login">Sign In</Link> 
               </button>
             </div>
           </div>
