@@ -30,6 +30,7 @@ export default function Login() {
     password: "",
     confirmPassword: "",
     address: "",
+    acceptTerms: false, // Added terms acceptance
   });
   const [errors, setErrors] = useState({});
   const [successMessage, setSuccessMessage] = useState("");
@@ -45,6 +46,11 @@ export default function Login() {
 
       if (!formData.address.trim()) {
         newErrors.address = "Address is required";
+      }
+
+      // Terms validation for signup
+      if (!formData.acceptTerms) {
+        newErrors.acceptTerms = "You must accept the terms and conditions";
       }
     }
 
@@ -73,13 +79,13 @@ export default function Login() {
   };
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value, type, checked } = e.target;
     setFormData({
       ...formData,
-      [name]: value,
+      [name]: type === 'checkbox' ? checked : value,
     });
 
-    // Clear error when user starts typing
+    // Clear error when user starts typing/checking
     if (errors[name]) {
       setErrors({
         ...errors,
@@ -124,6 +130,7 @@ export default function Login() {
           password: "",
           confirmPassword: "",
           address: "",
+          acceptTerms: false,
         });
 
         // Clear success message after 3 seconds
@@ -142,6 +149,7 @@ export default function Login() {
       password: "",
       confirmPassword: "",
       address: "",
+      acceptTerms: false,
     });
     setErrors({});
     setSuccessMessage("");
@@ -151,7 +159,7 @@ export default function Login() {
     <div>
       <Navbar />
       <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
-        <div className="relative w-full max-w-4xl h-[600px] bg-white rounded-3xl shadow-2xl overflow-hidden">
+        <div className="relative w-full max-w-4xl h-[850px] md:h-[700px] bg-white rounded-3xl shadow-2xl overflow-hidden">
           {/* Sliding Panel */}
           <div
             className={`absolute top-0 right-0 w-1/2 h-full bg-gradient-to-br from-blue-500 to-purple-600 transition-all duration-700 ease-in-out transform ${
@@ -427,6 +435,42 @@ export default function Login() {
                   )}
                 </div>
 
+                {/* Terms and Conditions Checkbox */}
+                <div className="relative">
+                  <label className="flex items-start space-x-3 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      name="acceptTerms"
+                      checked={formData.acceptTerms}
+                      onChange={handleInputChange}
+                      className={`mt-1 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2 ${
+                        errors.acceptTerms ? "ring-2 ring-red-500" : ""
+                      }`}
+                    />
+                    <span className="text-sm text-gray-600 leading-relaxed">
+                      I agree to the{" "}
+                      <a
+                        href="/terms"
+                        target="_blank"
+                        className="text-blue-600 hover:text-blue-800 underline font-medium"
+                      >
+                        Terms and Conditions
+                      </a>{" "}
+                      and{" "}
+                      <a
+                        href="/privacy"
+                        target="_blank"
+                        className="text-blue-600 hover:text-blue-800 underline font-medium"
+                      >
+                        Privacy Policy
+                      </a>
+                    </span>
+                  </label>
+                  {errors.acceptTerms && (
+                    <p className="text-red-500 text-xs mt-1">{errors.acceptTerms}</p>
+                  )}
+                </div>
+
                 <button
                   type="submit"
                   disabled={isSubmitting}
@@ -561,36 +605,74 @@ export default function Login() {
                   </div>
 
                   {isSignUp && (
-                    <div className="relative">
-                      <input
-                        type={showConfirmPassword ? "text" : "password"}
-                        name="confirmPassword"
-                        value={formData.confirmPassword}
-                        onChange={handleInputChange}
-                        placeholder="Confirm Password"
-                        className={`w-full px-4 py-3 bg-gray-100 border-0 rounded-lg focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300 pr-12 ${
-                          errors.confirmPassword ? "ring-2 ring-red-500" : ""
-                        }`}
-                      />
-                      <button
-                        type="button"
-                        onClick={() =>
-                          setShowConfirmPassword(!showConfirmPassword)
-                        }
-                        className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700"
-                      >
-                        {showConfirmPassword ? (
-                          <EyeOff className="w-5 h-5" />
-                        ) : (
-                          <Eye className="w-5 h-5" />
+                    <>
+                      <div className="relative">
+                        <input
+                          type={showConfirmPassword ? "text" : "password"}
+                          name="confirmPassword"
+                          value={formData.confirmPassword}
+                          onChange={handleInputChange}
+                          placeholder="Confirm Password"
+                          className={`w-full px-4 py-3 bg-gray-100 border-0 rounded-lg focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300 pr-12 ${
+                            errors.confirmPassword ? "ring-2 ring-red-500" : ""
+                          }`}
+                        />
+                        <button
+                          type="button"
+                          onClick={() =>
+                            setShowConfirmPassword(!showConfirmPassword)
+                          }
+                          className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700"
+                        >
+                          {showConfirmPassword ? (
+                            <EyeOff className="w-5 h-5" />
+                          ) : (
+                            <Eye className="w-5 h-5" />
+                          )}
+                        </button>
+                        {errors.confirmPassword && (
+                          <p className="text-red-500 text-xs mt-1">
+                            {errors.confirmPassword}
+                          </p>
                         )}
-                      </button>
-                      {errors.confirmPassword && (
-                        <p className="text-red-500 text-xs mt-1">
-                          {errors.confirmPassword}
-                        </p>
-                      )}
-                    </div>
+                      </div>
+
+                      {/* Terms and Conditions for Mobile */}
+                      <div className="relative">
+                        <label className="flex items-start space-x-3 cursor-pointer">
+                          <input
+                            type="checkbox"
+                            name="acceptTerms"
+                            checked={formData.acceptTerms}
+                            onChange={handleInputChange}
+                            className={`mt-1 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2 ${
+                              errors.acceptTerms ? "ring-2 ring-red-500" : ""
+                            }`}
+                          />
+                          <span className="text-sm text-gray-600 leading-relaxed">
+                            I agree to the{" "}
+                            <a
+                              href="/terms"
+                              target="_blank"
+                              className="text-blue-600 hover:text-blue-800 underline font-medium"
+                            >
+                              Terms and Conditions
+                            </a>{" "}
+                            and{" "}
+                            <a
+                              href="/privacy"
+                              target="_blank"
+                              className="text-blue-600 hover:text-blue-800 underline font-medium"
+                            >
+                              Privacy Policy
+                            </a>
+                          </span>
+                        </label>
+                        {errors.acceptTerms && (
+                          <p className="text-red-500 text-xs mt-1">{errors.acceptTerms}</p>
+                        )}
+                      </div>
+                    </>
                   )}
 
                   {!isSignUp && (
