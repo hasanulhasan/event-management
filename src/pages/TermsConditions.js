@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Calendar, CreditCard, AlertCircle, CheckCircle, Clock, FileText, Plane, Hotel } from 'lucide-react';
+import { Calendar, CreditCard, AlertCircle, CheckCircle, Clock, FileText, Plane } from 'lucide-react';
 
 export default function TermsConditions() {
   const [activePolicy, setActivePolicy] = useState('booking');

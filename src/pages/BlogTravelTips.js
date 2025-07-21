@@ -19,6 +19,7 @@ import {
   Share2,
   Bookmark,
 } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const BlogTravelTips = () => {
   const [activeTab, setActiveTab] = useState("articles");
@@ -921,9 +922,10 @@ const BlogTravelTips = () => {
             {/* Articles Grid with Enhanced Cards */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {filteredArticles.map((article) => (
-                <article
+                <Link
+                  to="/blogDetails"
                   key={article.id}
-                  className="group bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden transform hover:-translate-y-2"
+                  className="group bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden transform hover:-translate-y-2 cursor-pointer"
                 >
                   <div className="relative">
                     <img
@@ -1040,7 +1042,7 @@ const BlogTravelTips = () => {
                       </div>
                     </div>
                   </div>
-                </article>
+                </Link>
               ))}
             </div>
           </div>

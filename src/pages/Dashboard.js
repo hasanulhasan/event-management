@@ -4,6 +4,37 @@ import { Calendar, Users, MapPin, DollarSign, TrendingUp, Filter, Plus, Edit, Ey
 
 const Dashboard = () => {
   const [activeTab, setActiveTab] = useState('overview');
+    const [formData, setFormData] = useState({
+    title: "",
+    destination: "",
+    startDate: "",
+    endDate: "",
+    groupSize: "",
+    price: "",
+    category: "",
+    difficulty: "",
+    description: "",
+    highlights: "",
+  });
+
+  const [errors, setErrors] = useState({});
+  const [success, setSuccess] = useState(false);
+
+  const validate = () => {
+    const newErrors = {};
+    if (!formData.title.trim()) newErrors.title = "Trip Title is required";
+    if (!formData.destination.trim())
+      newErrors.destination = "Destination is required";
+    if (!formData.startDate) newErrors.startDate = "Start Date is required";
+    if (!formData.endDate) newErrors.endDate = "End Date is required";
+    if (!formData.groupSize) newErrors.groupSize = "Select group size";
+    if (!formData.price) newErrors.price = "Price is required";
+    if (!formData.category) newErrors.category = "Choose a category";
+    if (!formData.difficulty) newErrors.difficulty = "Choose difficulty";
+    if (!formData.description.trim())
+      newErrors.description = "Description is required";
+    return newErrors;
+  };
 
   // Mock data
   const revenueData = [
@@ -61,6 +92,43 @@ const Dashboard = () => {
     </button>
   );
 
+    const handleChange = (field, value) => {
+    setFormData({ ...formData, [field]: value });
+    setErrors({ ...errors, [field]: "" });
+  };
+
+  const handleSubmit = () => {
+    const validationErrors = validate();
+    if (Object.keys(validationErrors).length === 0) {
+      setSuccess(true);
+      console.log("Trip created:", formData);
+
+      // Reset the form
+      setFormData({
+        title: "",
+        destination: "",
+        startDate: "",
+        endDate: "",
+        groupSize: "",
+        price: "",
+        category: "",
+        difficulty: "",
+        description: "",
+        highlights: "",
+      });
+
+      // Optionally clear errors too
+      setErrors({});
+
+      // Hide success message after 3 seconds
+      setTimeout(() => setSuccess(false), 3000);
+
+      // Reset or submit to server
+    } else {
+      setErrors(validationErrors);
+      setSuccess(false);
+    }
+  };
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -71,6 +139,7 @@ const Dashboard = () => {
             <TabButton id="bookings" label="Bookings" active={activeTab === 'bookings'} onClick={setActiveTab} />
             <TabButton id="tours" label="Tours & Events" active={activeTab === 'tours'} onClick={setActiveTab} />
             <TabButton id="analytics" label="Analytics" active={activeTab === 'analytics'} onClick={setActiveTab} />
+            <TabButton id="createTrip" label="Create Trip" active={activeTab === 'createTrip'} onClick={setActiveTab} />
           </div>
         </div>
 
@@ -552,6 +621,219 @@ const Dashboard = () => {
             </div>
           </div>
         )}
+        {/* createTrip */}
+        {
+          activeTab === "createTrip" && (
+            <div>
+            <div className="bg-white rounded-2xl shadow-lg p-8 max-w-4xl mx-auto mt-8">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">
+              Create Your Group Trip
+            </h2>
+
+            {success && (
+              <div className="mb-4 p-4 bg-green-100 text-green-800 rounded-lg font-medium">
+                ✅ Trip created successfully!
+              </div>
+            )}
+
+            <div className="grid md:grid-cols-2 gap-6">
+              {/* Repeat similar pattern for all fields */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Trip Title
+                </label>
+                <input
+                  type="text"
+                  value={formData.title}
+                  onChange={(e) => handleChange("title", e.target.value)}
+                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                  placeholder="e.g., Iceland Northern Lights Adventure"
+                />
+                {errors.title && (
+                  <p className="text-red-500 text-sm mt-1">{errors.title}</p>
+                )}
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Destination
+                </label>
+                <input
+                  type="text"
+                  value={formData.destination}
+                  onChange={(e) => handleChange("destination", e.target.value)}
+                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                  placeholder="e.g., Reykjavik, Iceland"
+                />
+                {errors.destination && (
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.destination}
+                  </p>
+                )}
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Start Date
+                </label>
+                <input
+                  type="date"
+                  value={formData.startDate}
+                  onChange={(e) => handleChange("startDate", e.target.value)}
+                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                />
+                {errors.startDate && (
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.startDate}
+                  </p>
+                )}
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  End Date
+                </label>
+                <input
+                  type="date"
+                  value={formData.endDate}
+                  onChange={(e) => handleChange("endDate", e.target.value)}
+                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                />
+                {errors.endDate && (
+                  <p className="text-red-500 text-sm mt-1">{errors.endDate}</p>
+                )}
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Group Size
+                </label>
+                <select
+                  value={formData.groupSize}
+                  onChange={(e) => handleChange("groupSize", e.target.value)}
+                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                >
+                  <option value="">Select size</option>
+                  <option>4-6 people</option>
+                  <option>7-10 people</option>
+                  <option>11-15 people</option>
+                  <option>16+ people</option>
+                </select>
+                {errors.groupSize && (
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.groupSize}
+                  </p>
+                )}
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Price per Person
+                </label>
+                <input
+                  type="number"
+                  value={formData.price}
+                  onChange={(e) => handleChange("price", e.target.value)}
+                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                  placeholder="$1500"
+                />
+                {errors.price && (
+                  <p className="text-red-500 text-sm mt-1">{errors.price}</p>
+                )}
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Category
+                </label>
+                <select
+                  value={formData.category}
+                  onChange={(e) => handleChange("category", e.target.value)}
+                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                >
+                  <option value="">Choose a category</option>
+                  <option>Adventure</option>
+                  <option>Beach & Resort</option>
+                  <option>Cultural</option>
+                  <option>Events & Tours</option>
+                </select>
+                {errors.category && (
+                  <p className="text-red-500 text-sm mt-1">{errors.category}</p>
+                )}
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Difficulty Level
+                </label>
+                <select
+                  value={formData.difficulty}
+                  onChange={(e) => handleChange("difficulty", e.target.value)}
+                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                >
+                  <option value="">Select</option>
+                  <option>Easy</option>
+                  <option>Moderate</option>
+                  <option>Challenging</option>
+                  <option>Expert</option>
+                </select>
+                {errors.difficulty && (
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.difficulty}
+                  </p>
+                )}
+              </div>
+            </div>
+
+            <div className="mt-6">
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Description
+              </label>
+              <textarea
+                rows={4}
+                value={formData.description}
+                onChange={(e) => handleChange("description", e.target.value)}
+                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                placeholder="Describe your trip..."
+              />
+              {errors.description && (
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.description}
+                </p>
+              )}
+            </div>
+
+            <div className="mt-6">
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Trip Highlights
+              </label>
+              <input
+                type="text"
+                value={formData.highlights}
+                onChange={(e) => handleChange("highlights", e.target.value)}
+                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                placeholder="e.g., Ice caves, Hot springs"
+              />
+            </div>
+
+            <div className="flex space-x-4 mt-8">
+              <button
+                className="flex-1 bg-gray-200 text-gray-800 py-3 rounded-xl font-semibold hover:bg-gray-300 transition-colors"
+                onClick={() => setFormData({})}
+              >
+                Cancel
+              </button>
+              <button
+                className="flex-1 bg-gradient-to-r from-green-600 to-green-700 text-white py-3 rounded-xl font-semibold hover:from-green-700 hover:to-green-800 transition-all duration-300 transform hover:scale-105"
+                onClick={handleSubmit}
+              >
+                Create Trip
+              </button>
+            </div>
+          </div>
+            </div>
+          )
+        }
       </div>
     </div>
   );

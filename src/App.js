@@ -12,6 +12,7 @@ import BlogTravelTips from "./pages/BlogTravelTips";
 import HelpSupport from "./pages/HelpSupport";
 import PrivateRoute from "./auth/PrivateRoute";
 import Layout from "./Layout";
+import BlogDetails from "./pages/BlogDetails";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path="/GroupTrips" element={<GroupTrips />} />
         <Route path="/Destinations" element={<DestinationExplorer />} />
         <Route path="/BlogTravelTips" element={<BlogTravelTips />} />
+        <Route path="/blogDetails" element={<BlogDetails />} />
         <Route path="/support" element={<HelpSupport />} />
 
         <Route
