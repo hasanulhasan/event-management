@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Search, MapPin, Calendar, Hotel, Star, DollarSign, ChevronLeft, ChevronRight, X } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Search, MapPin, Calendar, Hotel, Star, Clock, DollarSign, Users, ChevronLeft, ChevronRight, X, Navigation } from 'lucide-react';
 
 const DestinationExplorer = () => {
   const [activeTab, setActiveTab] = useState('events');
@@ -12,12 +12,15 @@ const DestinationExplorer = () => {
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [showImageModal, setShowImageModal] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+  const [mapLoaded, setMapLoaded] = useState(false);
+  const [map, setMap] = useState(null);
 
   const destinations = [
     {
       id: 1,
       city: 'New York City',
       country: 'USA',
+      coordinates: { lat: 40.7128, lng: -74.0060 },
       mainImage: 'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=1920&h=1080&fit=crop',
       images: [
         'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=1920&h=1080&fit=crop',
@@ -28,9 +31,30 @@ const DestinationExplorer = () => {
         'https://images.unsplash.com/photo-1555109307-f7d9da25c244?w=1920&h=1080&fit=crop'
       ],
       events: [
-        { name: 'Broadway Week', type: 'Theater', date: '2025-01-15', price: '$75-150' },
-        { name: 'Winter Jazz Festival', type: 'Music', date: '2025-02-10', price: '$45-85' },
-        { name: 'Fashion Week', type: 'Fashion', date: '2025-02-20', price: '$200-500' }
+        { 
+          name: 'Broadway Week', 
+          type: 'Theater', 
+          date: '2025-01-15', 
+          price: '$75-150',
+          location: 'Times Square',
+          coordinates: { lat: 40.7580, lng: -73.9855 }
+        },
+        { 
+          name: 'Winter Jazz Festival', 
+          type: 'Music', 
+          date: '2025-02-10', 
+          price: '$45-85',
+          location: 'Lincoln Center',
+          coordinates: { lat: 40.7727, lng: -73.9857 }
+        },
+        { 
+          name: 'Fashion Week', 
+          type: 'Fashion', 
+          date: '2025-02-20', 
+          price: '$200-500',
+          location: 'Javits Center',
+          coordinates: { lat: 40.7555, lng: -74.0027 }
+        }
       ],
       hotels: [
         { name: 'The Plaza Hotel', rating: 5, price: '$450', distance: '0.2 miles from Times Square' },
@@ -48,6 +72,7 @@ const DestinationExplorer = () => {
       id: 2,
       city: 'Tokyo',
       country: 'Japan',
+      coordinates: { lat: 35.6762, lng: 139.6503 },
       mainImage: 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=1920&h=1080&fit=crop',
       images: [
         'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=1920&h=1080&fit=crop',
@@ -58,9 +83,30 @@ const DestinationExplorer = () => {
         'https://images.unsplash.com/photo-1536098561742-ca998e48cbcc?w=1920&h=1080&fit=crop'
       ],
       events: [
-        { name: 'Cherry Blossom Festival', type: 'Cultural', date: '2025-04-01', price: 'Free' },
-        { name: 'Tokyo Game Show', type: 'Gaming', date: '2025-09-15', price: '$25-60' },
-        { name: 'Sumida River Fireworks', type: 'Festival', date: '2025-07-25', price: 'Free' }
+        { 
+          name: 'Cherry Blossom Festival', 
+          type: 'Cultural', 
+          date: '2025-04-01', 
+          price: 'Free',
+          location: 'Ueno Park',
+          coordinates: { lat: 35.7168, lng: 139.7715 }
+        },
+        { 
+          name: 'Tokyo Game Show', 
+          type: 'Gaming', 
+          date: '2025-09-15', 
+          price: '$25-60',
+          location: 'Makuhari Messe',
+          coordinates: { lat: 35.6466, lng: 140.0329 }
+        },
+        { 
+          name: 'Sumida River Fireworks', 
+          type: 'Festival', 
+          date: '2025-07-25', 
+          price: 'Free',
+          location: 'Sumida River',
+          coordinates: { lat: 35.7061, lng: 139.8107 }
+        }
       ],
       hotels: [
         { name: 'Park Hyatt Tokyo', rating: 5, price: '$520', distance: '0.1 miles from Shinjuku' },
@@ -78,6 +124,7 @@ const DestinationExplorer = () => {
       id: 3,
       city: 'London',
       country: 'UK',
+      coordinates: { lat: 51.5074, lng: -0.1278 },
       mainImage: 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=1920&h=1080&fit=crop',
       images: [
         'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=1920&h=1080&fit=crop',
@@ -88,9 +135,30 @@ const DestinationExplorer = () => {
         'https://images.unsplash.com/photo-1529180184525-78f99adb8e98?w=1920&h=1080&fit=crop'
       ],
       events: [
-        { name: 'West End Shows', type: 'Theater', date: 'Year-round', price: '$35-120' },
-        { name: 'Notting Hill Carnival', type: 'Cultural', date: '2025-08-24', price: 'Free' },
-        { name: 'London Fashion Week', type: 'Fashion', date: '2025-02-14', price: '$100-300' }
+        { 
+          name: 'West End Shows', 
+          type: 'Theater', 
+          date: 'Year-round', 
+          price: '$35-120',
+          location: 'West End',
+          coordinates: { lat: 51.5145, lng: -0.1270 }
+        },
+        { 
+          name: 'Notting Hill Carnival', 
+          type: 'Cultural', 
+          date: '2025-08-24', 
+          price: 'Free',
+          location: 'Notting Hill',
+          coordinates: { lat: 51.5158, lng: -0.2055 }
+        },
+        { 
+          name: 'London Fashion Week', 
+          type: 'Fashion', 
+          date: '2025-02-14', 
+          price: '$100-300',
+          location: 'Somerset House',
+          coordinates: { lat: 51.5112, lng: -0.1170 }
+        }
       ],
       hotels: [
         { name: 'The Savoy', rating: 5, price: '$480', distance: '0.3 miles from Covent Garden' },
@@ -108,6 +176,7 @@ const DestinationExplorer = () => {
       id: 4,
       city: 'Barcelona',
       country: 'Spain',
+      coordinates: { lat: 41.3851, lng: 2.1734 },
       mainImage: 'https://images.unsplash.com/photo-1539037116277-4db20889f2d4?w=1920&h=1080&fit=crop',
       images: [
         'https://images.unsplash.com/photo-1539037116277-4db20889f2d4?w=1920&h=1080&fit=crop',
@@ -118,9 +187,30 @@ const DestinationExplorer = () => {
         'https://images.unsplash.com/photo-1558642084-fd07fae5282e?w=1920&h=1080&fit=crop'
       ],
       events: [
-        { name: 'Primavera Sound', type: 'Music', date: '2025-06-05', price: '$180-320' },
-        { name: 'La Mercè Festival', type: 'Cultural', date: '2025-09-20', price: 'Free' },
-        { name: 'Mobile World Congress', type: 'Tech', date: '2025-02-24', price: '$800-1200' }
+        { 
+          name: 'Primavera Sound', 
+          type: 'Music', 
+          date: '2025-06-05', 
+          price: '$180-320',
+          location: 'Parc del Fòrum',
+          coordinates: { lat: 41.4095, lng: 2.2170 }
+        },
+        { 
+          name: 'La Mercè Festival', 
+          type: 'Cultural', 
+          date: '2025-09-20', 
+          price: 'Free',
+          location: 'Gothic Quarter',
+          coordinates: { lat: 41.3828, lng: 2.1761 }
+        },
+        { 
+          name: 'Mobile World Congress', 
+          type: 'Tech', 
+          date: '2025-02-24', 
+          price: '$800-1200',
+          location: 'Fira Barcelona',
+          coordinates: { lat: 41.3537, lng: 2.1267 }
+        }
       ],
       hotels: [
         { name: 'Hotel Casa Fuster', rating: 5, price: '$280', distance: '0.2 miles from Gràcia' },
@@ -138,6 +228,7 @@ const DestinationExplorer = () => {
       id: 5,
       city: 'Paris',
       country: 'France',
+      coordinates: { lat: 48.8566, lng: 2.3522 },
       mainImage: 'https://images.unsplash.com/photo-1431274172761-fca41d930114?w=1920&h=1080&fit=crop',
       images: [
         'https://images.unsplash.com/photo-1431274172761-fca41d930114?w=1920&h=1080&fit=crop',
@@ -148,9 +239,30 @@ const DestinationExplorer = () => {
         'https://images.unsplash.com/photo-1511739001486-6bfe10ce785f?w=1920&h=1080&fit=crop'
       ],
       events: [
-        { name: 'Paris Fashion Week', type: 'Fashion', date: '2025-03-01', price: '$150-400' },
-        { name: 'Fête de la Musique', type: 'Music', date: '2025-06-21', price: 'Free' },
-        { name: 'Nuit Blanche', type: 'Art', date: '2025-10-04', price: 'Free' }
+        { 
+          name: 'Paris Fashion Week', 
+          type: 'Fashion', 
+          date: '2025-03-01', 
+          price: '$150-400',
+          location: 'Grand Palais',
+          coordinates: { lat: 48.8662, lng: 2.3124 }
+        },
+        { 
+          name: 'Fête de la Musique', 
+          type: 'Music', 
+          date: '2025-06-21', 
+          price: 'Free',
+          location: 'Throughout Paris',
+          coordinates: { lat: 48.8566, lng: 2.3522 }
+        },
+        { 
+          name: 'Nuit Blanche', 
+          type: 'Art', 
+          date: '2025-10-04', 
+          price: 'Free',
+          location: 'Various Museums',
+          coordinates: { lat: 48.8607, lng: 2.3365 }
+        }
       ],
       hotels: [
         { name: 'The Ritz Paris', rating: 5, price: '$650', distance: '0.1 miles from Place Vendôme' },
@@ -168,6 +280,7 @@ const DestinationExplorer = () => {
       id: 6,
       city: 'Dubai',
       country: 'UAE',
+      coordinates: { lat: 25.2048, lng: 55.2708 },
       mainImage: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1920&h=1080&fit=crop',
       images: [
         'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1920&h=1080&fit=crop',
@@ -178,9 +291,30 @@ const DestinationExplorer = () => {
         'https://images.unsplash.com/photo-1546412414-e1885259563a?w=1920&h=1080&fit=crop'
       ],
       events: [
-        { name: 'Dubai Shopping Festival', type: 'Shopping', date: '2025-01-10', price: 'Free entry' },
-        { name: 'Art Dubai', type: 'Art', date: '2025-03-15', price: '$25-50' },
-        { name: 'Dubai Food Festival', type: 'Food', date: '2025-02-28', price: 'Varies' }
+        { 
+          name: 'Dubai Shopping Festival', 
+          type: 'Shopping', 
+          date: '2025-01-10', 
+          price: 'Free entry',
+          location: 'Dubai Mall',
+          coordinates: { lat: 25.1972, lng: 55.2796 }
+        },
+        { 
+          name: 'Art Dubai', 
+          type: 'Art', 
+          date: '2025-03-15', 
+          price: '$25-50',
+          location: 'Madinat Jumeirah',
+          coordinates: { lat: 25.1321, lng: 55.1851 }
+        },
+        { 
+          name: 'Dubai Food Festival', 
+          type: 'Food', 
+          date: '2025-02-28', 
+          price: 'Varies',
+          location: 'Various Venues',
+          coordinates: { lat: 25.2048, lng: 55.2708 }
+        }
       ],
       hotels: [
         { name: 'Burj Al Arab', rating: 5, price: '$1200', distance: '0.1 miles from Jumeirah Beach' },
@@ -198,6 +332,7 @@ const DestinationExplorer = () => {
       id: 7,
       city: 'Singapore',
       country: 'Singapore',
+      coordinates: { lat: 1.3521, lng: 103.8198 },
       mainImage: 'https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=1920&h=1080&fit=crop',
       images: [
         'https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=1920&h=1080&fit=crop',
@@ -208,9 +343,30 @@ const DestinationExplorer = () => {
         'https://images.unsplash.com/photo-1496939376851-89342e90adcd?w=1920&h=1080&fit=crop'
       ],
       events: [
-        { name: 'Singapore Grand Prix', type: 'Sports', date: '2025-09-14', price: '$80-500' },
-        { name: 'Singapore Food Festival', type: 'Food', date: '2025-07-15', price: '$10-30' },
-        { name: 'Chinese New Year', type: 'Cultural', date: '2025-01-29', price: 'Free' }
+        { 
+          name: 'Singapore Grand Prix', 
+          type: 'Sports', 
+          date: '2025-09-14', 
+          price: '$80-500',
+          location: 'Marina Bay Circuit',
+          coordinates: { lat: 1.2921, lng: 103.8587 }
+        },
+        { 
+          name: 'Singapore Food Festival', 
+          type: 'Food', 
+          date: '2025-07-15', 
+          price: '$10-30',
+          location: 'Clarke Quay',
+          coordinates: { lat: 1.2884, lng: 103.8468 }
+        },
+        { 
+          name: 'Chinese New Year', 
+          type: 'Cultural', 
+          date: '2025-01-29', 
+          price: 'Free',
+          location: 'Chinatown',
+          coordinates: { lat: 1.2827, lng: 103.8442 }
+        }
       ],
       hotels: [
         { name: 'Marina Bay Sands', rating: 5, price: '$320', distance: '0.1 miles from Gardens by the Bay' },
@@ -228,6 +384,7 @@ const DestinationExplorer = () => {
       id: 8,
       city: 'Sydney',
       country: 'Australia',
+      coordinates: { lat: -33.8688, lng: 151.2093 },
       mainImage: 'https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=1920&h=1080&fit=crop',
       images: [
         'https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=1920&h=1080&fit=crop',
@@ -238,9 +395,30 @@ const DestinationExplorer = () => {
         'https://images.unsplash.com/photo-1528072164453-f4e8ef0d475a?w=1920&h=1080&fit=crop'
       ],
       events: [
-        { name: 'Sydney Festival', type: 'Arts', date: '2025-01-08', price: '$25-150' },
-        { name: 'Vivid Sydney', type: 'Light', date: '2025-05-24', price: 'Free' },
-        { name: 'Sydney Film Festival', type: 'Film', date: '2025-06-05', price: '$18-35' }
+        { 
+          name: 'Sydney Festival', 
+          type: 'Arts', 
+          date: '2025-01-08', 
+          price: '$25-150',
+          location: 'Sydney Opera House',
+          coordinates: { lat: -33.8568, lng: 151.2153 }
+        },
+        { 
+          name: 'Vivid Sydney', 
+          type: 'Light', 
+          date: '2025-05-24', 
+          price: 'Free',
+          location: 'Circular Quay',
+          coordinates: { lat: -33.8614, lng: 151.2108 }
+        },
+        { 
+          name: 'Sydney Film Festival', 
+          type: 'Film', 
+          date: '2025-06-05', 
+          price: '$18-35',
+          location: 'State Theatre',
+          coordinates: { lat: -33.8737, lng: 151.2073 }
+        }
       ],
       hotels: [
         { name: 'Park Hyatt Sydney', rating: 5, price: '$480', distance: '0.1 miles from Circular Quay' },
@@ -255,6 +433,138 @@ const DestinationExplorer = () => {
       }
     }
   ];
+
+  // Load Google Maps API
+  useEffect(() => {
+    if (!window.google && !document.querySelector('script[src*="maps.googleapis.com"]')) {
+      const script = document.createElement('script');
+      script.src = `https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places`;
+      script.async = true;
+      script.defer = true;
+      script.onload = () => setMapLoaded(true);
+      document.head.appendChild(script);
+    } else if (window.google) {
+      setMapLoaded(true);
+    }
+  }, []);
+
+  // Initialize map when destination changes and Google Maps is loaded
+  useEffect(() => {
+    if (mapLoaded && selectedDestination && activeTab === 'travel') {
+      initializeMap();
+    }
+  }, [mapLoaded, selectedDestination, activeTab]);
+
+  const initializeMap = () => {
+    const mapElement = document.getElementById('destination-map');
+    if (!mapElement || !window.google) return;
+
+    const mapOptions = {
+      center: selectedDestination.coordinates,
+      zoom: 12,
+      mapTypeId: window.google.maps.MapTypeId.ROADMAP,
+      styles: [
+        {
+          featureType: 'poi',
+          elementType: 'labels',
+          stylers: [{ visibility: 'on' }]
+        }
+      ]
+    };
+
+    const newMap = new window.google.maps.Map(mapElement, mapOptions);
+    setMap(newMap);
+
+    // Add city marker
+    const cityMarker = new window.google.maps.Marker({
+      position: selectedDestination.coordinates,
+      map: newMap,
+      title: `${selectedDestination.city}, ${selectedDestination.country}`,
+      icon: {
+        url: 'data:image/svg+xml;base64,' + btoa(`
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="rgb(59, 130, 246)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+            <circle cx="12" cy="10" r="3"/>
+          </svg>
+        `),
+        scaledSize: new window.google.maps.Size(32, 32)
+      }
+    });
+
+    const cityInfoWindow = new window.google.maps.InfoWindow({
+      content: `
+        <div class="p-2">
+          <h3 class="font-semibold text-gray-900">${selectedDestination.city}</h3>
+          <p class="text-sm text-gray-600">${selectedDestination.country}</p>
+          <p class="text-xs text-gray-500 mt-1">City Center</p>
+        </div>
+      `
+    });
+
+    cityMarker.addListener('click', () => {
+      cityInfoWindow.open(newMap, cityMarker);
+    });
+
+    // Add event markers
+    selectedDestination.events.forEach((event, index) => {
+      const eventMarker = new window.google.maps.Marker({
+        position: event.coordinates,
+        map: newMap,
+        title: event.name,
+        icon: {
+          url: 'data:image/svg+xml;base64,' + btoa(`
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="rgb(239, 68, 68)" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+          `),
+          scaledSize: new window.google.maps.Size(28, 28)
+        }
+      });
+
+      const eventInfoWindow = new window.google.maps.InfoWindow({
+        content: `
+          <div class="p-3 max-w-xs">
+            <h4 class="font-semibold text-gray-900 mb-2">${event.name}</h4>
+            <div class="space-y-1 text-sm">
+              <div class="flex items-center text-gray-600">
+                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                </svg>
+                ${event.location}
+              </div>
+              <div class="flex items-center text-gray-600">
+                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"/>
+                </svg>
+                ${event.price}
+              </div>
+              <span class="inline-block px-2 py-1 text-xs rounded-full bg-blue-100 text-blue-800 mt-2">${event.type}</span>
+            </div>
+          </div>
+        `
+      });
+
+      eventMarker.addListener('click', () => {
+        eventInfoWindow.open(newMap, eventMarker);
+      });
+    });
+
+    // Adjust map bounds to include all markers
+    const bounds = new window.google.maps.LatLngBounds();
+    bounds.extend(selectedDestination.coordinates);
+    selectedDestination.events.forEach(event => {
+      bounds.extend(event.coordinates);
+    });
+    newMap.fitBounds(bounds);
+    
+    // Set minimum zoom level
+    const listener = window.google.maps.event.addListener(newMap, "idle", function() {
+      if (newMap.getZoom() > 15) newMap.setZoom(15);
+      window.google.maps.event.removeListener(listener);
+    });
+  };
 
   const formatDateRange = (start, end) => {
     if (!start || !end) return '';
@@ -288,11 +598,11 @@ const DestinationExplorer = () => {
     }
   };
 
-  // const clearDateRange = () => {
-  //   setTempStartDate(null);
-  //   setTempEndDate(null);
-  //   setDateRange('');
-  // };
+  const clearDateRange = () => {
+    setTempStartDate(null);
+    setTempEndDate(null);
+    setDateRange('');
+  };
 
   const isDateInRange = (date) => {
     if (!tempStartDate || !tempEndDate) return false;
@@ -476,6 +786,7 @@ const DestinationExplorer = () => {
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [showDatePicker]);
+  
   const parseDateRange = (dateRangeStr) => {
     if (!dateRangeStr) return { startDate: null, endDate: null };
     const dates = dateRangeStr.split(' – ');
@@ -655,6 +966,10 @@ const DestinationExplorer = () => {
               <span>{event.price}</span>
             </div>
           </div>
+          <div className="flex items-center text-sm text-gray-500 mt-2">
+            <MapPin className="w-4 h-4 mr-1" />
+            <span>{event.location}</span>
+          </div>
         </div>
       ))}
     </div>
@@ -686,17 +1001,71 @@ const DestinationExplorer = () => {
   );
 
   const TravelInfo = ({ info }) => (
-    <div className="bg-gray-50 p-4 rounded-lg">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div>
-          <h4 className="font-semibold text-gray-900 mb-2">Getting There</h4>
-          <p className="text-sm text-gray-600 mb-1"><strong>Airport:</strong> {info.airport}</p>
-          <p className="text-sm text-gray-600"><strong>Transit:</strong> {info.transit}</p>
+    <div className="space-y-6">
+      {/* Google Map */}
+      <div className="bg-gray-50 rounded-lg overflow-hidden">
+        <div className="p-4 border-b bg-white">
+          <h4 className="font-semibold text-gray-900 flex items-center">
+            <Navigation className="w-5 h-5 mr-2 text-blue-600" />
+            Destination Map
+          </h4>
+          <p className="text-sm text-gray-600 mt-1">
+            Blue pin: City center • Red pins: Event locations
+          </p>
         </div>
-        <div>
-          <h4 className="font-semibold text-gray-900 mb-2">Know Before You Go</h4>
-          <p className="text-sm text-gray-600 mb-1"><strong>Weather:</strong> {info.weather}</p>
-          <p className="text-sm text-gray-600"><strong>Currency:</strong> {info.currency}</p>
+        <div 
+          id="destination-map" 
+          className="w-full h-96"
+          style={{ minHeight: '384px' }}
+        >
+           <iframe
+    title="Meggenhorn Location Map"
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30766.403624231945!2d8.316556725734348!3d47.03254649703117!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x478ff96ff47bccd9%3A0xb28b207cc4300e03!2sMeggenhorn!5e0!3m2!1sen!2sbd!4v1753098710543!5m2!1sen!2sbd"
+    className="w-full h-full border-0"
+    allowFullScreen=""
+    loading="lazy"
+    referrerPolicy="no-referrer-when-downgrade"
+  ></iframe>
+          {/* {!mapLoaded && (
+            <div className="w-full h-96 bg-gray-200 flex items-center justify-center">
+              <div className="text-center">
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-2"></div>
+                <p className="text-gray-600">Loading map...</p>
+              </div>
+            </div>
+          )} */}
+        </div>
+      </div>
+
+      {/* Travel Information */}
+      <div className="bg-gray-50 p-4 rounded-lg">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <h4 className="font-semibold text-gray-900 mb-2">Getting There</h4>
+            <p className="text-sm text-gray-600 mb-1"><strong>Airport:</strong> {info.airport}</p>
+            <p className="text-sm text-gray-600"><strong>Transit:</strong> {info.transit}</p>
+          </div>
+          <div>
+            <h4 className="font-semibold text-gray-900 mb-2">Know Before You Go</h4>
+            <p className="text-sm text-gray-600 mb-1"><strong>Weather:</strong> {info.weather}</p>
+            <p className="text-sm text-gray-600"><strong>Currency:</strong> {info.currency}</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Events Summary */}
+      <div className="bg-gray-50 p-4 rounded-lg">
+        <h4 className="font-semibold text-gray-900 mb-3">Event Locations</h4>
+        <div className="space-y-2">
+          {selectedDestination.events.map((event, index) => (
+            <div key={index} className="flex items-center justify-between text-sm">
+              <div className="flex items-center">
+                <div className="w-3 h-3 bg-red-500 rounded-full mr-2"></div>
+                <span className="font-medium">{event.name}</span>
+              </div>
+              <span className="text-gray-600">{event.location}</span>
+            </div>
+          ))}
         </div>
       </div>
     </div>
@@ -812,7 +1181,7 @@ const DestinationExplorer = () => {
                       <img 
                         src={image} 
                         alt={`${selectedDestination.city} - View ${index + 4}`} 
-                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-300 cursor-pointer" 
+                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-300 cursor-pointer"
                         onClick={() => openImageModal(index + 3)}
                       />
                       {index === 2 && selectedDestination.images.length > 6 && (
