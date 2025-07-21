@@ -1,17 +1,19 @@
-import About from './pages/About';
-import Home from './pages/Home';
-import { Routes, Route } from 'react-router-dom';
-import Login from './pages/Login';
-import PrivacyPolicy from './pages/PrivacyPolicy';
-import Contact from './pages/Contact';
-import GroupTrips from './pages/GroupTrips';
-import DestinationExplorer from './pages/Destinations';
-import TermsConditions from './pages/TermsConditions';
-import BlogTravelTips from './pages/BlogTravelTips';
-import HelpSupport from './pages/HelpSupport';
+import About from "./pages/About";
+import Home from "./pages/Home";
+import { Routes, Route } from "react-router-dom";
+import Login from "./pages/Login";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import Contact from "./pages/Contact";
+import GroupTrips from "./pages/GroupTrips";
+import DestinationExplorer from "./pages/Destinations";
+import TermsConditions from "./pages/TermsConditions";
+import Dashboard from "./pages/Dashboard";
+import BlogTravelTips from "./pages/BlogTravelTips";
+import HelpSupport from "./pages/HelpSupport";
+import PrivateRoute from "./auth/PrivateRoute";
 
 function App() {
-  
+  const user = localStorage.getItem("user");
   return (
     <Routes>
       <Route path="/" element={<Home />} />
@@ -23,10 +25,16 @@ function App() {
       <Route path="/GroupTrips" element={<GroupTrips />} />
       <Route path="/Destinations" element={<DestinationExplorer />} />
       <Route path="/BlogTravelTips" element={<BlogTravelTips />} />
-      <Route path="/HelpSupport" element={<HelpSupport />} />
+      <Route path="/support" element={<HelpSupport />} />
 
-      
-      
+      <Route
+        path="/dashboard"
+        element={
+          <PrivateRoute>
+            <Dashboard />
+          </PrivateRoute>
+        }
+      />
     </Routes>
   );
 }
