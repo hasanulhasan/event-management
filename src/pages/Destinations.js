@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Search, MapPin, Calendar, Hotel, Star, Clock, DollarSign, Users, ChevronLeft, ChevronRight, X } from 'lucide-react';
+import { Search, MapPin, Calendar, Hotel, Star, DollarSign, ChevronLeft, ChevronRight, X } from 'lucide-react';
 
 const DestinationExplorer = () => {
   const [activeTab, setActiveTab] = useState('events');
@@ -288,11 +288,11 @@ const DestinationExplorer = () => {
     }
   };
 
-  const clearDateRange = () => {
-    setTempStartDate(null);
-    setTempEndDate(null);
-    setDateRange('');
-  };
+  // const clearDateRange = () => {
+  //   setTempStartDate(null);
+  //   setTempEndDate(null);
+  //   setDateRange('');
+  // };
 
   const isDateInRange = (date) => {
     if (!tempStartDate || !tempEndDate) return false;

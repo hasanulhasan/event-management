@@ -11,30 +11,32 @@ import Dashboard from "./pages/Dashboard";
 import BlogTravelTips from "./pages/BlogTravelTips";
 import HelpSupport from "./pages/HelpSupport";
 import PrivateRoute from "./auth/PrivateRoute";
+import Layout from "./Layout";
 
 function App() {
-  const user = localStorage.getItem("user");
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/about" element={<About />} />
-      <Route path="/Login" element={<Login />} />
-      <Route path="/PrivacyPolicy" element={<PrivacyPolicy />} />
-      <Route path="/Contact" element={<Contact />} />
-      <Route path="/TermsConditions" element={<TermsConditions />} />
-      <Route path="/GroupTrips" element={<GroupTrips />} />
-      <Route path="/Destinations" element={<DestinationExplorer />} />
-      <Route path="/BlogTravelTips" element={<BlogTravelTips />} />
-      <Route path="/support" element={<HelpSupport />} />
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/Login" element={<Login />} />
+        <Route path="/PrivacyPolicy" element={<PrivacyPolicy />} />
+        <Route path="/Contact" element={<Contact />} />
+        <Route path="/TermsConditions" element={<TermsConditions />} />
+        <Route path="/GroupTrips" element={<GroupTrips />} />
+        <Route path="/Destinations" element={<DestinationExplorer />} />
+        <Route path="/BlogTravelTips" element={<BlogTravelTips />} />
+        <Route path="/support" element={<HelpSupport />} />
 
-      <Route
-        path="/dashboard"
-        element={
-          <PrivateRoute>
-            <Dashboard />
-          </PrivateRoute>
-        }
-      />
+        <Route
+          path="/dashboard"
+          element={
+            <PrivateRoute>
+              <Dashboard />
+            </PrivateRoute>
+          }
+        />
+      </Route>
     </Routes>
   );
 }

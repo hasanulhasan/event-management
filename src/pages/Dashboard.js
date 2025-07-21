@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line, PieChart, Pie, Cell } from 'recharts';
-import { Calendar, Users, MapPin, DollarSign, TrendingUp, Bell, Search, Filter, Plus, Edit, Eye, MoreHorizontal } from 'lucide-react';
-import Navbar from '../components/Navbar';
+import { Calendar, Users, MapPin, DollarSign, TrendingUp, Filter, Plus, Edit, Eye, MoreHorizontal } from 'lucide-react';
 
 const Dashboard = () => {
   const [activeTab, setActiveTab] = useState('overview');
-  const [selectedPeriod, setSelectedPeriod] = useState('7d');
 
   // Mock data
   const revenueData = [
@@ -65,46 +63,6 @@ const Dashboard = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      {/* <div className="bg-white shadow-sm border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-4">
-            <div className="flex items-center space-x-4">
-              <h1 className="text-2xl font-bold text-gray-900">Break Buddy</h1>
-              <div className="flex items-center space-x-2">
-                <div className="relative">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
-                  <input
-                    type="text"
-                    placeholder="Search bookings, tours..."
-                    className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  />
-                </div>
-              </div>
-            </div>
-            <div className="hidden md:flex items-center space-x-4">
-              <select
-                value={selectedPeriod}
-                onChange={(e) => setSelectedPeriod(e.target.value)}
-                className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              >
-                <option value="7d">Last 7 days</option>
-                <option value="30d">Last 30 days</option>
-                <option value="90d">Last 90 days</option>
-              </select>
-              <button className="relative p-2 text-gray-600 hover:text-gray-900">
-                <Bell className="w-5 h-5" />
-                <span className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full"></span>
-              </button>
-              <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors flex items-center space-x-2">
-                <Plus className="w-4 h-4" />
-                <span>New Tour</span>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div> */}
-    <Navbar/>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Navigation Tabs */}
         <div className="mb-8">

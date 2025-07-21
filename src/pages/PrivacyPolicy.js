@@ -1,7 +1,5 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { ChevronDown, ChevronUp, Shield, Globe, Calendar, Users, FileText } from 'lucide-react';
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
 
 const PrivacyPolicy = () => {
   const [expandedSection, setExpandedSection] = useState(null);
@@ -122,8 +120,6 @@ const PrivacyPolicy = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <Navbar />
-        {/* Header */}
       <div className="bg-white shadow-sm border-b">
         <div className="max-w-4xl mx-auto px-4 py-6">
           <div className="flex items-center space-x-3">
@@ -174,11 +170,8 @@ const PrivacyPolicy = () => {
             </div>
           ))}
         </div>
-
       </div>
       
-      {/* Footer */}
-      <Footer />
     </div>
   );
 };

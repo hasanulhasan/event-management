@@ -1,19 +1,13 @@
-import React from "react";
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import {
   Eye,
   EyeOff,
-  Mail,
-  Lock,
-  User,
   Facebook,
   Chrome,
   Github,
   Apple,
 } from "lucide-react";
 import { useState } from "react";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
-import { Navigate } from "react-router-dom";
 import { useNavigate, useLocation } from "react-router-dom";
 
 export default function Login() {
@@ -30,7 +24,7 @@ export default function Login() {
     password: "",
     confirmPassword: "",
     address: "",
-    acceptTerms: false, // Added terms acceptance
+    acceptTerms: false,
   });
   const [errors, setErrors] = useState({});
   const [successMessage, setSuccessMessage] = useState("");
@@ -157,7 +151,6 @@ export default function Login() {
 
   return (
     <div>
-      <Navbar />
       <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
         <div className="relative w-full max-w-4xl h-[850px] md:h-[700px] bg-white rounded-3xl shadow-2xl overflow-hidden">
           {/* Sliding Panel */}
@@ -717,7 +710,6 @@ export default function Login() {
           </div>
         </div>
       </div>
-      <Footer />
     </div>
   );
 }

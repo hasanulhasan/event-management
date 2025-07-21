@@ -1,7 +1,5 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Calendar, CreditCard, AlertCircle, CheckCircle, Clock, FileText, Plane, Hotel } from 'lucide-react';
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
 
 export default function TermsConditions() {
   const [activePolicy, setActivePolicy] = useState('booking');
@@ -30,7 +28,6 @@ export default function TermsConditions() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-        <Navbar />
       {/* Header */}
       <div className="bg-white shadow-sm border-b">
         <div className="max-w-4xl mx-auto px-4 py-6">
@@ -370,10 +367,6 @@ export default function TermsConditions() {
           </div>
         )}
       </div>
-
-
-      {/* Footer */}
-      <Footer />
     </div>
   );
 }

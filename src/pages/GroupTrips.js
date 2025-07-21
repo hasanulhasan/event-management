@@ -1,13 +1,10 @@
-import React, { useState } from 'react';
-import { Users, MapPin, Calendar, Star, Plus, Search, Filter, Heart, Clock, Globe, Camera, Mountain, Waves } from 'lucide-react';
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
+import { useState } from 'react';
+import { Users, MapPin, Calendar, Star, Search, Heart, Globe, Camera, Mountain, Waves } from 'lucide-react';
 
 const GroupTrips = () => {
   const [activeTab, setActiveTab] = useState('browse');
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
-  const [showCreateForm, setShowCreateForm] = useState(false);
   const [likedTrips, setLikedTrips] = useState(new Set());
 
   const categories = [
@@ -203,117 +200,6 @@ const GroupTrips = () => {
     </div>
   );
 
-  
-  // const CreateTripForm = () => (
-  //   <div className="bg-white rounded-2xl shadow-lg p-8">
-  //     <h2 className="text-2xl font-bold text-gray-900 mb-6">Create Your Group Trip</h2>
-      
-  //     <div className="grid md:grid-cols-2 gap-6">
-  //       <div>
-  //         <label className="block text-sm font-medium text-gray-700 mb-2">Trip Title</label>
-  //         <input 
-  //           type="text" 
-  //           className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-  //           placeholder="e.g., Iceland Northern Lights Adventure"
-  //         />
-  //       </div>
-        
-  //       <div>
-  //         <label className="block text-sm font-medium text-gray-700 mb-2">Destination</label>
-  //         <input 
-  //           type="text" 
-  //           className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-  //           placeholder="e.g., Reykjavik, Iceland"
-  //         />
-  //       </div>
-        
-  //       <div>
-  //         <label className="block text-sm font-medium text-gray-700 mb-2">Start Date</label>
-  //         <input 
-  //           type="date" 
-  //           className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-  //         />
-  //       </div>
-        
-  //       <div>
-  //         <label className="block text-sm font-medium text-gray-700 mb-2">End Date</label>
-  //         <input 
-  //           type="date" 
-  //           className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-  //         />
-  //       </div>
-        
-  //       <div>
-  //         <label className="block text-sm font-medium text-gray-700 mb-2">Group Size</label>
-  //         <select className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-  //           <option>4-6 people</option>
-  //           <option>7-10 people</option>
-  //           <option>11-15 people</option>
-  //           <option>16+ people</option>
-  //         </select>
-  //       </div>
-        
-  //       <div>
-  //         <label className="block text-sm font-medium text-gray-700 mb-2">Price per Person</label>
-  //         <input 
-  //           type="number" 
-  //           className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-  //           placeholder="$1500"
-  //         />
-  //       </div>
-        
-  //       <div>
-  //         <label className="block text-sm font-medium text-gray-700 mb-2">Category</label>
-  //         <select className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-  //           <option>Adventure</option>
-  //           <option>Beach & Resort</option>
-  //           <option>Cultural</option>
-  //           <option>Events & Tours</option>
-  //         </select>
-  //       </div>
-        
-  //       <div>
-  //         <label className="block text-sm font-medium text-gray-700 mb-2">Difficulty Level</label>
-  //         <select className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-  //           <option>Easy</option>
-  //           <option>Moderate</option>
-  //           <option>Challenging</option>
-  //           <option>Expert</option>
-  //         </select>
-  //       </div>
-  //     </div>
-      
-  //     <div className="mt-6">
-  //       <label className="block text-sm font-medium text-gray-700 mb-2">Description</label>
-  //       <textarea 
-  //         rows={4}
-  //         className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-  //         placeholder="Describe your trip, what's included, and what makes it special..."
-  //       ></textarea>
-  //     </div>
-      
-  //     <div className="mt-6">
-  //       <label className="block text-sm font-medium text-gray-700 mb-2">Trip Highlights</label>
-  //       <input 
-  //         type="text" 
-  //         className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-  //         placeholder="e.g., Northern Lights, Ice caves, Hot springs (comma separated)"
-  //       />
-  //     </div>
-      
-  //     <div className="flex space-x-4 mt-8">
-  //       <button 
-  //         onClick={() => setShowCreateForm(false)}
-  //         className="flex-1 bg-gray-200 text-gray-800 py-3 rounded-xl font-semibold hover:bg-gray-300 transition-colors"
-  //       >
-  //         Cancel
-  //       </button>
-  //       <button className="flex-1 bg-gradient-to-r from-green-600 to-green-700 text-white py-3 rounded-xl font-semibold hover:from-green-700 hover:to-green-800 transition-all duration-300 transform hover:scale-105">
-  //         Create Trip
-  //       </button>
-  //     </div>
-  //   </div>
-  // );
 const [formData, setFormData] = useState({
     title: '',
     destination: '',
@@ -383,7 +269,6 @@ const [formData, setFormData] = useState({
   };
   return (
     <div className="min-h-screen bg-gray-50">
-      <Navbar />
       <div className="container mx-auto px-4 py-8">
         {/* Header */}
         <div className="text-center mb-12">
@@ -653,7 +538,6 @@ const [formData, setFormData] = useState({
     </div>
         )}
       </div>
-      <Footer />
     </div>
   );
 };
