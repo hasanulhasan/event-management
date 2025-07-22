@@ -13,6 +13,7 @@ import HelpSupport from "./pages/HelpSupport";
 import PrivateRoute from "./auth/PrivateRoute";
 import Layout from "./Layout";
 import BlogDetails from "./pages/BlogDetails";
+import TourCategories from "./pages/TourCategories";
 
 function App() {
   return (
@@ -29,6 +30,8 @@ function App() {
         <Route path="/BlogTravelTips" element={<BlogTravelTips />} />
         <Route path="/blogDetails" element={<BlogDetails />} />
         <Route path="/support" element={<HelpSupport />} />
+        <Route path="/TourCategories" element={<TourCategories />} />
+        
 
         <Route
           path="/dashboard"

@@ -1001,75 +1001,40 @@ const DestinationExplorer = () => {
   );
 
   const TravelInfo = ({ info }) => (
-    <div className="space-y-6">
-      {/* Google Map */}
-      <div className="bg-gray-50 rounded-lg overflow-hidden">
-        <div className="p-4 border-b bg-white">
-          <h4 className="font-semibold text-gray-900 flex items-center">
-            <Navigation className="w-5 h-5 mr-2 text-blue-600" />
-            Destination Map
-          </h4>
-          <p className="text-sm text-gray-600 mt-1">
-            Blue pin: City center • Red pins: Event locations
-          </p>
+  <div className="space-y-6">
+    {/* Travel Information */}
+    <div className="bg-gray-50 p-4 rounded-lg">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <h4 className="font-semibold text-gray-900 mb-2">Getting There</h4>
+          <p className="text-sm text-gray-600 mb-1"><strong>Airport:</strong> {info.airport}</p>
+          <p className="text-sm text-gray-600"><strong>Transit:</strong> {info.transit}</p>
         </div>
-        <div 
-          id="destination-map" 
-          className="w-full h-96"
-          style={{ minHeight: '384px' }}
-        >
-           <iframe
-    title="Meggenhorn Location Map"
-    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30766.403624231945!2d8.316556725734348!3d47.03254649703117!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x478ff96ff47bccd9%3A0xb28b207cc4300e03!2sMeggenhorn!5e0!3m2!1sen!2sbd!4v1753098710543!5m2!1sen!2sbd"
-    className="w-full h-full border-0"
-    allowFullScreen=""
-    loading="lazy"
-    referrerPolicy="no-referrer-when-downgrade"
-  ></iframe>
-          {/* {!mapLoaded && (
-            <div className="w-full h-96 bg-gray-200 flex items-center justify-center">
-              <div className="text-center">
-                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-2"></div>
-                <p className="text-gray-600">Loading map...</p>
-              </div>
-            </div>
-          )} */}
-        </div>
-      </div>
-
-      {/* Travel Information */}
-      <div className="bg-gray-50 p-4 rounded-lg">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <h4 className="font-semibold text-gray-900 mb-2">Getting There</h4>
-            <p className="text-sm text-gray-600 mb-1"><strong>Airport:</strong> {info.airport}</p>
-            <p className="text-sm text-gray-600"><strong>Transit:</strong> {info.transit}</p>
-          </div>
-          <div>
-            <h4 className="font-semibold text-gray-900 mb-2">Know Before You Go</h4>
-            <p className="text-sm text-gray-600 mb-1"><strong>Weather:</strong> {info.weather}</p>
-            <p className="text-sm text-gray-600"><strong>Currency:</strong> {info.currency}</p>
-          </div>
-        </div>
-      </div>
-
-      {/* Events Summary */}
-      <div className="bg-gray-50 p-4 rounded-lg">
-        <h4 className="font-semibold text-gray-900 mb-3">Event Locations</h4>
-        <div className="space-y-2">
-          {selectedDestination.events.map((event, index) => (
-            <div key={index} className="flex items-center justify-between text-sm">
-              <div className="flex items-center">
-                <div className="w-3 h-3 bg-red-500 rounded-full mr-2"></div>
-                <span className="font-medium">{event.name}</span>
-              </div>
-              <span className="text-gray-600">{event.location}</span>
-            </div>
-          ))}
+        <div>
+          <h4 className="font-semibold text-gray-900 mb-2">Know Before You Go</h4>
+          <p className="text-sm text-gray-600 mb-1"><strong>Weather:</strong> {info.weather}</p>
+          <p className="text-sm text-gray-600"><strong>Currency:</strong> {info.currency}</p>
         </div>
       </div>
     </div>
-  );
+
+    {/* Events Summary */}
+    <div className="bg-gray-50 p-4 rounded-lg">
+      <h4 className="font-semibold text-gray-900 mb-3">Event Locations</h4>
+      <div className="space-y-2">
+        {selectedDestination.events.map((event, index) => (
+          <div key={index} className="flex items-center justify-between text-sm">
+            <div className="flex items-center">
+              <div className="w-3 h-3 bg-red-500 rounded-full mr-2"></div>
+              <span className="font-medium">{event.name}</span>
+            </div>
+            <span className="text-gray-600">{event.location}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+);
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -1223,7 +1188,7 @@ const DestinationExplorer = () => {
             {/* Tabs */}
             <div className="mb-6">
               <nav className="flex space-x-8">
-                {['events', 'hotels', 'travel'].map((tab) => (
+                {['events', 'hotels'].map((tab) => (
                   <button
                     key={tab}
                     onClick={() => setActiveTab(tab)}
@@ -1235,7 +1200,7 @@ const DestinationExplorer = () => {
                   >
                     {tab === 'events' && <Calendar className="w-4 h-4 inline mr-2" />}
                     {tab === 'hotels' && <Hotel className="w-4 h-4 inline mr-2" />}
-                    {tab === 'travel' && <MapPin className="w-4 h-4 inline mr-2" />}
+                    {/* {tab === 'travel' && <MapPin className="w-4 h-4 inline mr-2" />} */}
                     {tab.charAt(0).toUpperCase() + tab.slice(1)}
                   </button>
                 ))}
@@ -1243,7 +1208,8 @@ const DestinationExplorer = () => {
             </div>
 
             {/* Tab Content */}
-            <div className="bg-white rounded-lg shadow-md p-6">
+            <div className="bg-white rounded-lg shadow-md p-6 flex flex-col lg:flex-row gap-6">
+              <div className="lg:w-[40%]">
               {activeTab === 'events' && (
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-4">Upcoming Events</h3>
@@ -1256,12 +1222,37 @@ const DestinationExplorer = () => {
                   <HotelsList hotels={selectedDestination.hotels} />
                 </div>
               )}
-              {activeTab === 'travel' && (
+              {/* {activeTab === 'travel' && (
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-4">Travel Information</h3>
                   <TravelInfo info={selectedDestination.travelInfo} />
                 </div>
-              )}
+              )} */}
+              </div>
+              <div className="lg:w-[60%]">
+      <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+        <Navigation className="w-5 h-5 mr-2 text-blue-600" />
+        Destination Map
+      </h3>
+      <p className="text-sm text-gray-600 mb-4">
+        • Red pins: Event locations
+      </p>
+      <div 
+        id="destination-map" 
+        className="w-full h-96 rounded-lg overflow-hidden"
+        style={{ minHeight: '384px' }}
+      >
+        <iframe
+          title="Destination Location Map"
+          src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d11143.809717751654!2d151.20371343510456!3d-33.86197210197784!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1saustralia%20%20all%20tourist%20places%20pin%20poitns!5e0!3m2!1sen!2sbd!4v1753162438982!5m2!1sen!2sbd"
+          width="600"
+          className="w-full h-full border-0"
+          allowFullScreen=""
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
+                </div>
             </div>
           </div>
         ) : (
