@@ -13,6 +13,7 @@ import {
   X,
   Navigation,
 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const DestinationExplorer = () => {
   const [activeTab, setActiveTab] = useState("events");
@@ -27,6 +28,12 @@ const DestinationExplorer = () => {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [mapLoaded, setMapLoaded] = useState(false);
   const [map, setMap] = useState(null);
+  const navigate = useNavigate();
+
+  const handleDetailsEvent = () => {
+    navigate("/eventDetails");
+    window.scrollTo(0, 0);
+  };
 
   const destinations = [
     {
@@ -1185,15 +1192,17 @@ const DestinationExplorer = () => {
   const EventsList = ({ events }) => (
     <div className="space-y-3">
       {events.map((event, index) => (
-        <div key={index} className="bg-gray-50 p-4 rounded-lg">
+        <div
+          onClick={handleDetailsEvent}
+          key={index}
+          className="bg-gray-50 p-4 rounded-lg cursor-pointer"
+        >
           <div className="flex items-center justify-between mb-2">
             <h4 className="font-semibold text-gray-900">{event.name}</h4>
             <span
-              className={`px-2 py-1 text-xs rounded-full ${getEventTypeColor(
-                event.type
-              )}`}
+              className={`px-3 py-1 text-xs font-semibold rounded-full bg-blue-600 text-white`}
             >
-              {event.type}
+              Book Now
             </span>
           </div>
           <div className="flex items-center text-sm text-gray-600 space-x-4">
@@ -1508,9 +1517,6 @@ const DestinationExplorer = () => {
                   <Navigation className="w-5 h-5 mr-2 text-blue-600" />
                   Destination Map
                 </h3>
-                <p className="text-sm text-gray-600 mb-4">
-                  • Red pins: Event locations
-                </p>
                 <div
                   id="destination-map"
                   className="w-full h-96 rounded-lg overflow-hidden"

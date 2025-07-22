@@ -15,6 +15,7 @@ import Layout from "./Layout";
 import BlogDetails from "./pages/BlogDetails";
 import TourCategories from "./pages/TourCategories";
 import ExploreCategory from "./pages/ExploreCategory";
+import EventDetails from "./pages/EventDetails";
 
 function App() {
   return (
@@ -27,8 +28,9 @@ function App() {
         <Route path="/Contact" element={<Contact />} />
         <Route path="/TermsConditions" element={<TermsConditions />} />
         <Route path="/GroupTrips" element={<GroupTrips />} />
-        <Route path="/destinations" element={<DestinationExplorer />} />
         <Route path="/exploreEvents" element={<ExploreCategory />} />
+        <Route path="/destinations" element={<DestinationExplorer />} />
+        <Route path="/eventDetails" element={<EventDetails />} />
         <Route path="/BlogTravelTips" element={<BlogTravelTips />} />
         <Route path="/blogDetails" element={<BlogDetails />} />
         <Route path="/support" element={<HelpSupport />} />
