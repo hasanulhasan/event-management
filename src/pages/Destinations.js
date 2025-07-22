@@ -1156,38 +1156,61 @@ const DestinationExplorer = () => {
   };
 
   const DestinationCard = ({ destination }) => {
-    return (
-      <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
-        {/* Single main image for listing */}
-        <div className="relative h-64 overflow-hidden">
-          <img
-            src={destination.mainImage}
-            alt={`${destination.city}`}
-            className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-          />
-        </div>
+  return (
+    <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+      {/* Single main image for listing */}
+      <div className="relative h-64 overflow-hidden">
+        <img
+          src={destination.mainImage}
+          alt={`${destination.city}`}
+          className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+        />
+      </div>
 
-        <div className="p-4">
-          <div className="flex items-center justify-between mb-2">
-            <h3 className="text-lg font-semibold text-gray-900">
-              {destination.city}
-            </h3>
-            <span className="text-sm text-gray-500">{destination.country}</span>
-          </div>
-          <div className="flex items-center text-sm text-gray-600 mb-3">
+      <div className="p-4">
+        <div className="flex items-center justify-between mb-2">
+          <h3 className="text-lg font-semibold text-gray-900">
+            {destination.city}
+          </h3>
+          <span className="text-sm text-gray-500">{destination.country}</span>
+        </div>
+        
+        {/* Events count with hover effect - moved to card body */}
+        <div className="relative group mb-3">
+          <div className="flex items-center text-sm text-gray-600 cursor-default">
             <Calendar className="w-4 h-4 mr-1" />
             <span>{destination.events.length} upcoming events</span>
           </div>
-          <button
-            onClick={() => setSelectedDestination(destination)}
-            className="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors"
-          >
-            Explore Details
-          </button>
+          
+          {/* Event list tooltip on hover */}
+          <div className="absolute hidden group-hover:block bottom-full left-0 mb-2 w-72 bg-white rounded-lg shadow-lg p-4 z-10 border border-gray-100">
+            <ul className="space-y-3">
+              {destination.events.map((event, index) => (
+                <li key={index} className="text-sm">
+                  <div className="font-medium text-gray-900 truncate">{event.name}</div>
+                  <div className="flex items-start text-gray-600 mt-1">
+                    <MapPin className="w-3 h-3 mt-0.5 mr-1.5 flex-shrink-0" />
+                    <span className="text-xs">{event.location}</span>
+                  </div>
+                </li>
+              ))}
+            </ul>
+            {destination.events.length === 0 && (
+              <p className="text-sm text-gray-500">No upcoming events</p>
+            )}
+          </div>
         </div>
+        
+        <button
+          onClick={() => setSelectedDestination(destination)}
+          className="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors"
+        >
+          Explore Details
+        </button>
       </div>
-    );
-  };
+    </div>
+  );
+};
 
   const EventsList = ({ events }) => (
     <div className="space-y-3">
