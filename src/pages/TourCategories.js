@@ -113,7 +113,15 @@ const TourCategories = () => {
   };
 
   return (
-    <section  className="bg-gradient-to-r from-gray-50 to-gray-100 py-16 px-4 overflow-hidden">
+    <section 
+  className="bg-gradient-to-r from-gray-50 to-gray-100 relative py-16 px-4 overflow-hidden"
+  // style={{
+  //   backgroundImage: "url('Travel-background-1.png')",
+  //   backgroundSize: "cover",
+  //   backgroundPosition: "center",
+  //   backgroundRepeat: "no-repeat"
+  // }}
+>
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-30">
         <div className="absolute top-20 left-10 w-32 h-32 bg-blue-200/30 rounded-full blur-2xl"></div>
