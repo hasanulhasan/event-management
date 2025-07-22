@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { Globe, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -31,10 +31,10 @@ export default function Navbar() {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             <a
-              href="/Destinations"
+              href="/exploreEvents"
               className="text-gray-700 hover:text-blue-600 transition-colors"
             >
-              Destinations
+              Explore Events
             </a>
             <a
               href="/GroupTrips"

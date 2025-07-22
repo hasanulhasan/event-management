@@ -21,7 +21,7 @@ export default function About() {
       setCurrentImageIndex((prev) => (prev + 1) % travelImages.length);
     }, 3000);
     return () => clearInterval(interval);
-  }, []);
+  }, [travelImages.length]);
 
   const stats = [
     { number: "500K+", label: "Travelers Served", icon: Users },

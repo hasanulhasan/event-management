@@ -1,5 +1,6 @@
 {
-  "name": "my-project",
+  "name": "break-buddy",
+  "homepage": "http://mybreakbuddy.com/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

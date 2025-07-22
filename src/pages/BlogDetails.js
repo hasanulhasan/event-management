@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { Heart, Share2, Bookmark, Calendar, Clock, Eye, Star, DollarSign, TrendingUp, User, MapPin, Camera, MessageCircle, ThumbsUp, ArrowLeft, Facebook, Twitter, Instagram, Link } from 'lucide-react';
+import { Heart, Share2, Calendar, Clock, Eye, Star, DollarSign, TrendingUp, MessageCircle, Facebook, Twitter, Instagram, Link } from 'lucide-react';
 
 const BlogDetails = () => {
-  const [isBookmarked, setIsBookmarked] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
   const [showShareModal, setShowShareModal] = useState(false);
   const [likes, setLikes] = useState(342);

@@ -1,7 +1,4 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { Globe } from 'lucide-react'
-
-
 export default function Footer() {
   return (
     <footer className="bg-gray-900 text-white py-12">
