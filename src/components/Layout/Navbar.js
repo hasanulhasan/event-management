@@ -37,6 +37,12 @@ export default function Navbar() {
               Explore Events
             </a>
             <a
+              href="/HostEvent"
+              className="text-gray-700 hover:text-blue-600 transition-colors"
+            >
+              Host an Event
+            </a>
+            <a
               href="/GroupTrips"
               className="text-gray-700 hover:text-blue-600 transition-colors"
             >

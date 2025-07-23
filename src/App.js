@@ -16,6 +16,7 @@ import BlogDetails from "./pages/BlogDetails";
 import TourCategories from "./pages/TourCategories";
 import ExploreCategory from "./pages/ExploreCategory";
 import EventDetails from "./pages/EventDetails";
+import HostEvent from "./pages/HostEvent";
 
 function App() {
   return (
@@ -34,7 +35,8 @@ function App() {
         <Route path="/BlogTravelTips" element={<BlogTravelTips />} />
         <Route path="/blogDetails" element={<BlogDetails />} />
         <Route path="/support" element={<HelpSupport />} />
-        <Route path="/TourCategories" element={<TourCategories />} />        
+        <Route path="/TourCategories" element={<TourCategories />} />
+        <Route path="/HostEvent" element={<HostEvent />} />        
 
         <Route
           path="/dashboard"
