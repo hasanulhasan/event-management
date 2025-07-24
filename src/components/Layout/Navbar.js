@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { Menu, X } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
@@ -8,11 +8,29 @@ export default function Navbar() {
   const navigate = useNavigate();
   const user = localStorage.getItem("user");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleDropdown = () => setIsOpen((prev) => !prev);
+  const dropdownRef = useRef(null);
 
   const handleLogout = () => {
     localStorage.removeItem("user");
     navigate("/login");
   };
+
+    useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target)
+      ) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   return (
     <nav className="bg-white/90 backdrop-blur-md shadow-lg sticky top-0 z-50">
@@ -60,12 +78,43 @@ export default function Navbar() {
             >
               Shared Plans
             </a>
-            <a
+            <div className="relative" ref={dropdownRef}>
+            <span
+              onClick={toggleDropdown}
+              className="text-gray-700 hover:text-blue-600 transition-colors cursor-pointer"
+            >
+              My Plans
+            </span>  <span className="ml-1 text-xs">▼</span>
+             {isOpen && (
+              <div className="absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg z-10">
+                <a
+                  href="/plan/active"
+                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                >
+                  Active Plans
+                </a>
+                <a
+                  href="/plan/history"
+                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                >
+                  Plan History
+                </a>
+                <a
+                  href="/plan/settings"
+                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                >
+                  Plan Settings
+                </a>
+              </div>
+            )}
+            </div>
+           
+            {/* <a
               href="/BlogTravelTips"
               className="text-gray-700 hover:text-blue-600 transition-colors"
             >
               Blog & Travel Tips
-            </a>
+            </a> */}
             {/* <Link
               to="/about"
               className="text-gray-700 hover:text-blue-600 transition-colors"
@@ -78,12 +127,14 @@ export default function Navbar() {
             >
               Support
             </a> */}
-            <Link
+            {user && 
+            (<Link
               to="/dashboard"
               className="text-gray-700 hover:text-blue-600 transition-colors"
             >
               Dashboard
-            </Link>
+            </Link>)
+            }
             {user ? (
               <button
                 onClick={handleLogout}
@@ -149,11 +200,17 @@ export default function Navbar() {
               Shared Plans
             </a>
             <a
+              href="/"
+              className="block px-3 py-2 text-gray-700 hover:text-blue-600"
+            >
+              My Plans
+            </a>
+            {/* <a
               href="/BlogTravelTips"
               className="block px-3 py-2 text-gray-700 hover:text-blue-600"
             >
               Blog Travel Tips
-            </a>
+            </a> */}
             <a
               href="/dashboard"
               className="block px-3 py-2 text-gray-700 hover:text-blue-600"
