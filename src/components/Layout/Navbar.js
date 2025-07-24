@@ -31,6 +31,12 @@ export default function Navbar() {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             <a
+              href="/"
+              className="text-gray-700 hover:text-blue-600 transition-colors"
+            >
+              Home
+            </a>
+            <a
               href="/exploreEvents"
               className="text-gray-700 hover:text-blue-600 transition-colors"
             >
@@ -49,10 +55,10 @@ export default function Navbar() {
               Event Moments
             </a>
             <a
-              href="/GroupTrips"
+              href="/SharedPlans"
               className="text-gray-700 hover:text-blue-600 transition-colors"
             >
-              Group Trips
+              Shared Plans
             </a>
             <a
               href="/BlogTravelTips"
@@ -113,34 +119,40 @@ export default function Navbar() {
         <div className="md:hidden bg-white border-t">
           <div className="px-2 pt-2 pb-3 space-y-1">
             <a
-              href="/Destinations"
+              href="/"
               className="block px-3 py-2 text-gray-700 hover:text-blue-600"
             >
-              Destinations
+              Home
             </a>
             <a
-              href="/GroupTrips"
+              href="/exploreEvents"
               className="block px-3 py-2 text-gray-700 hover:text-blue-600"
             >
-              Group Trips
+              Explore Events
+            </a>
+            <a
+              href="/HostEvent"
+              className="block px-3 py-2 text-gray-700 hover:text-blue-600"
+            >
+              Host an Event
+            </a>
+            <a
+              href="/EventMoments"
+              className="block px-3 py-2 text-gray-700 hover:text-blue-600"
+            >
+              Event Moments
+            </a>
+            <a
+              href="/SharedPlans"
+              className="block px-3 py-2 text-gray-700 hover:text-blue-600"
+            >
+              Shared Plans
             </a>
             <a
               href="/BlogTravelTips"
               className="block px-3 py-2 text-gray-700 hover:text-blue-600"
             >
-              Blog & Travel Tips
-            </a>
-            <a
-              href="/about"
-              className="block px-3 py-2 text-gray-700 hover:text-blue-600"
-            >
-              About
-            </a>
-            <a
-              href="/support"
-              className="block px-3 py-2 text-gray-700 hover:text-blue-600"
-            >
-              Support
+              Blog Travel Tips
             </a>
             <a
               href="/dashboard"

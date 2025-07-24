@@ -1,91 +1,198 @@
 import { useState } from 'react';
-import { Calendar, Clock, MapPin, Users, Star, Heart, Share2, Camera, Award, Globe } from 'lucide-react';
+import { Calendar, Clock, MapPin, Users, Star, Heart, Share2, Camera, Award, Globe, X, CheckCircle } from 'lucide-react';
 
 const EventDetails = () => {
-  // const [selectedDate, setSelectedDate] = useState('2024-08-15');
   const [selectedPackage, setSelectedPackage] = useState('standard');
   const [isLiked, setIsLiked] = useState(false);
   const [activeTab, setActiveTab] = useState('overview');
+  const [showBookingForm, setShowBookingForm] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
+  const [guests, setGuests] = useState(1);
+  const [formData, setFormData] = useState({
+    name: '',
+    phone: '',
+    email: '',
+    address: ''
+  });
 
   const tourPackages = [
-    {
-      id: 'basic',
-      name: 'Basic Package',
-      price: '$299',
-      duration: '3 Days',
-      features: ['Hotel Accommodation', 'Breakfast Included', 'Local Guide', 'Transport']
-    },
-    {
-      id: 'standard',
-      name: 'Standard Package',
-      price: '$499',
-      duration: '5 Days',
-      features: ['4-Star Hotel', 'All Meals', 'Professional Guide', 'Premium Transport', 'City Tour']
-    }
+    { id: 'basic', name: 'Basic Package', price: 299, duration: '3 Days', features: ['Hotel Accommodation', 'Breakfast Included', 'Local Guide', 'Transport'] },
+    { id: 'standard', name: 'Standard Package', price: 499, duration: '5 Days', features: ['4-Star Hotel', 'All Meals', 'Professional Guide', 'Premium Transport', 'City Tour'] }
   ];
 
   const reviews = [
-    {
-      id: 1,
-      name: 'Sarah Johnson',
-      rating: 5,
-      date: '2 weeks ago',
-      comment: 'Absolutely amazing experience! The guide was knowledgeable and the scenery was breathtaking.',
-      avatar: 'https://picsum.photos/50/50?random=1'
-    },
-    {
-      id: 2,
-      name: 'Mike Chen',
-      rating: 4,
-      date: '1 month ago',
-      comment: 'Great tour with excellent organization. Would definitely recommend to friends and family.',
-      avatar: 'https://picsum.photos/50/50?random=2'
-    },
-    {
-      id: 3,
-      name: 'Emma Wilson',
-      rating: 5,
-      date: '3 weeks ago',
-      comment: 'Perfect adventure! Every detail was well planned and the accommodation was fantastic.',
-      avatar: 'https://picsum.photos/50/50?random=3'
-    }
+    { id: 1, name: 'Sarah Johnson', rating: 5, date: '2 weeks ago', comment: 'Absolutely amazing experience! The guide was knowledgeable and the scenery was breathtaking.', avatar: 'https://picsum.photos/50/50?random=1' },
+    { id: 2, name: 'Mike Chen', rating: 4, date: '1 month ago', comment: 'Great tour with excellent organization. Would definitely recommend to friends and family.', avatar: 'https://picsum.photos/50/50?random=2' },
+    { id: 3, name: 'Emma Wilson', rating: 5, date: '3 weeks ago', comment: 'Perfect adventure! Every detail was well planned and the accommodation was fantastic.', avatar: 'https://picsum.photos/50/50?random=3' }
   ];
 
   const itinerary = [
-    {
-      day: 1,
-      title: 'Arrival & City Welcome',
-      activities: ['Airport pickup', 'Hotel check-in', 'Welcome dinner', 'City orientation'],
-      time: 'All Day'
-    },
-    {
-      day: 2,
-      title: 'Historic City Tour',
-      activities: ['Morning museum visit', 'Lunch at local restaurant', 'Walking tour', 'Evening cultural show'],
-      time: '9:00 AM - 8:00 PM'
-    },
-    {
-      day: 3,
-      title: 'Nature Adventure',
-      activities: ['Mountain hiking', 'Scenic viewpoints', 'Picnic lunch', 'Wildlife watching'],
-      time: '7:00 AM - 6:00 PM'
-    },
-    {
-      day: 4,
-      title: 'Cultural Immersion',
-      activities: ['Local market visit', 'Cooking class', 'Traditional crafts', 'Folk music evening'],
-      time: '10:00 AM - 9:00 PM'
-    },
-    {
-      day: 5,
-      title: 'Departure',
-      activities: ['Free morning', 'Last-minute shopping', 'Airport transfer'],
-      time: 'Until departure'
-    }
+    { day: 1, title: 'Arrival & City Welcome', activities: ['Airport pickup', 'Hotel check-in', 'Welcome dinner', 'City orientation'], time: 'All Day' },
+    { day: 2, title: 'Historic City Tour', activities: ['Morning museum visit', 'Lunch at local restaurant', 'Walking tour', 'Evening cultural show'], time: '9:00 AM - 8:00 PM' },
+    { day: 3, title: 'Nature Adventure', activities: ['Mountain hiking', 'Scenic viewpoints', 'Picnic lunch', 'Wildlife watching'], time: '7:00 AM - 6:00 PM' },
+    { day: 4, title: 'Cultural Immersion', activities: ['Local market visit', 'Cooking class', 'Traditional crafts', 'Folk music evening'], time: '10:00 AM - 9:00 PM' },
+    { day: 5, title: 'Departure', activities: ['Free morning', 'Last-minute shopping', 'Airport transfer'], time: 'Until departure' }
   ];
+
+  const handleBookNow = () => {
+    setShowBookingForm(true);
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log({
+      package: tourPackages.find(pkg => pkg.id === selectedPackage),
+      guests,
+      ...formData
+    });
+    setShowBookingForm(false);
+    setShowSuccess(true);
+    setTimeout(() => setShowSuccess(false), 5000);
+  };
+
+  const selectedPackageData = tourPackages.find(pkg => pkg.id === selectedPackage);
+  const totalPrice = selectedPackageData ? selectedPackageData.price * guests : 0;
 
   return (
     <div className="min-h-screen bg-gray-50">
+      {/* Success Message */}
+      {showSuccess && (
+        <div className="fixed top-6 right-6 z-50">
+          <div className="bg-green-100 border border-green-400 text-green-700 px-6 py-4 rounded-lg shadow-lg flex items-center space-x-3 animate-fade-in">
+            <CheckCircle className="w-6 h-6 text-green-600" />
+            <div>
+              <p className="font-semibold">Success!</p>
+              <p>Your booking has been submitted.</p>
+            </div>
+            <button 
+              onClick={() => setShowSuccess(false)}
+              className="text-green-700 hover:text-green-900 ml-4"
+            >
+              <X className="w-5 h-5" />
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Booking Form Modal */}
+      {showBookingForm && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="p-6">
+              <div className="flex justify-between items-center mb-6">
+                <h2 className="text-2xl font-bold">Complete Your Booking</h2>
+                <button onClick={() => setShowBookingForm(false)} className="text-gray-500 hover:text-gray-700">
+                  <X className="w-6 h-6" />
+                </button>
+              </div>
+              
+              <div className="mb-6 bg-gray-50 p-4 rounded-lg">
+                <h3 className="font-semibold text-lg mb-2">Booking Summary</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <p className="text-gray-600">Event:</p>
+                    <p className="font-medium">Magical Swiss Alps Adventure</p>
+                  </div>
+                  <div>
+                    <p className="text-gray-600">Package:</p>
+                    <p className="font-medium">{selectedPackageData?.name}</p>
+                  </div>
+                  <div>
+                    <p className="text-gray-600">Price per person:</p>
+                    <p className="font-medium">${selectedPackageData?.price}</p>
+                  </div>
+                  <div>
+                    <p className="text-gray-600">Number of guests:</p>
+                    <p className="font-medium">{guests}</p>
+                  </div>
+                  <div className="md:col-span-2">
+                    <p className="text-gray-600">Total price:</p>
+                    <p className="font-bold text-xl">${totalPrice}</p>
+                  </div>
+                </div>
+              </div>
+
+              <form onSubmit={handleSubmit}>
+                <h3 className="font-semibold text-lg mb-4">Contact Information</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                  <div>
+                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">Full Name*</label>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      required
+                      value={formData.name}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">Email*</label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      required
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">Phone Number*</label>
+                    <input
+                      type="tel"
+                      id="phone"
+                      name="phone"
+                      required
+                      value={formData.phone}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="address" className="block text-sm font-medium text-gray-700 mb-1">Address</label>
+                    <input
+                      type="text"
+                      id="address"
+                      name="address"
+                      value={formData.address}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    />
+                  </div>
+                </div>
+
+                <div className="flex justify-end space-x-4">
+                  <button
+                    type="button"
+                    onClick={() => setShowBookingForm(false)}
+                    className="px-6 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors duration-200"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="submit"
+                    className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200"
+                  >
+                    Confirm Booking
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Hero Section */}
       <div className="relative h-96 bg-gradient-to-r from-blue-600 to-purple-700 overflow-hidden">
         <div 
@@ -329,7 +436,7 @@ const EventDetails = () => {
             <div className="bg-white rounded-lg p-6 shadow-sm sticky top-6">
               <div className="flex items-center justify-between mb-6">
                 <div>
-                  <span className="text-3xl font-bold text-blue-600">$499</span>
+                  <span className="text-3xl font-bold text-blue-600">${selectedPackageData?.price}</span>
                   <span className="text-gray-500 ml-2">per person</span>
                 </div>
                 <div className="flex items-center space-x-1">
@@ -338,19 +445,6 @@ const EventDetails = () => {
                   <span className="text-gray-500">(124)</span>
                 </div>
               </div>
-
-              {/* Date Selection */}
-              {/* <div className="mb-6">
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Select Date
-                </label>
-                <input
-                  type="date"
-                  value={selectedDate}
-                  onChange={(e) => setSelectedDate(e.target.value)}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                />
-              </div> */}
 
               {/* Package Selection */}
               <div className="mb-6">
@@ -366,7 +460,7 @@ const EventDetails = () => {
                     }`} onClick={() => setSelectedPackage(pkg.id)}>
                       <div className="flex items-center justify-between mb-2">
                         <h4 className="font-semibold">{pkg.name}</h4>
-                        <span className="text-blue-600 font-bold">{pkg.price}</span>
+                        <span className="text-blue-600 font-bold">${pkg.price}</span>
                       </div>
                       <p className="text-sm text-gray-600 mb-2">{pkg.duration}</p>
                       <div className="text-xs text-gray-500">
@@ -383,17 +477,22 @@ const EventDetails = () => {
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Number of Guests
                 </label>
-                <select className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                  <option>1 Guest</option>
-                  <option>2 Guests</option>
-                  <option>3 Guests</option>
-                  <option>4 Guests</option>
-                  <option>5+ Guests</option>
+                <select 
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  value={guests}
+                  onChange={(e) => setGuests(Number(e.target.value))}
+                >
+                  {[1, 2, 3, 4, 5].map((g) => (
+                    <option key={g} value={g}>{g} Guest{g !== 1 ? 's' : ''}</option>
+                  ))}
                 </select>
               </div>
 
               {/* Book Now Button */}
-              <button className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-4 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl mb-4">
+              <button 
+                onClick={handleBookNow}
+                className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-4 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl mb-4"
+              >
                 Book Now
               </button>
 

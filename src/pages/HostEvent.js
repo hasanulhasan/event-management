@@ -21,6 +21,8 @@ const HostEvent = () => {
   const [showRegistrationForm, setShowRegistrationForm] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [showEventDetails, setShowEventDetails] = useState(false);
+  const [showRulesModal, setShowRulesModal] = useState(false);
+  const [rulesAccepted, setRulesAccepted] = useState(false);
   const [registrationData, setRegistrationData] = useState({
     name: '',
     email: '',
@@ -162,6 +164,18 @@ const HostEvent = () => {
     }
   ]);
 
+  // Handle Host Event tab click
+  const handleHostTabClick = () => {
+    setShowRulesModal(true);
+  };
+
+  // Handle rules agreement
+  const handleRulesAgreement = () => {
+    setRulesAccepted(true);
+    setShowRulesModal(false);
+    setActiveTab('host');
+  };
+
   // Handle form input changes
   const handleChange = (e) => {
     const { name, value, type, checked, files } = e.target;
@@ -246,6 +260,7 @@ const HostEvent = () => {
           termsAccepted: false
         });
         setActiveTab('browse');
+        setRulesAccepted(false); // Reset rules acceptance for next time
       }, 1500);
     }
   };
@@ -315,7 +330,7 @@ const HostEvent = () => {
             Browse Events
           </button>
           <button
-            onClick={() => setActiveTab('host')}
+            onClick={handleHostTabClick}
             className={`px-4 py-2 text-sm font-medium rounded-r-lg ${activeTab === 'host' ? 'bg-blue-600 text-white' : 'bg-white text-gray-700 hover:bg-gray-50'}`}
           >
             Host an Event
@@ -323,7 +338,7 @@ const HostEvent = () => {
         </div>
       </div>
 
-      {activeTab === 'host' ? (
+      {activeTab === 'host' && rulesAccepted ? (
         <div>
           <h1 className="text-3xl font-bold text-center text-gray-800 mb-8">Host an Event</h1>
           <form onSubmit={handleSubmit} className="space-y-6 max-w-2xl mx-auto">
@@ -564,6 +579,88 @@ const HostEvent = () => {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      )}
+
+      {/* Rules Agreement Modal */}
+      {showRulesModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+          <div className="bg-white rounded-lg p-6 max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="flex justify-between items-center mb-6">
+              <h3 className="text-2xl font-bold text-gray-800">Event Hosting Rules & Guidelines</h3>
+              <button 
+                onClick={() => setShowRulesModal(false)}
+                className="text-gray-500 hover:text-gray-700"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+            
+            <div className="space-y-6 text-gray-700">
+              <div>
+                <h4 className="text-lg font-semibold text-gray-800 mb-2">📋 General Guidelines</h4>
+                <ul className="list-disc list-inside space-y-1 text-sm">
+                  <li>All events must be legal and comply with local regulations</li>
+                  <li>Event information must be accurate and truthful</li>
+                  <li>Appropriate venue capacity and safety measures must be ensured</li>
+                  <li>Event organizers are responsible for obtaining necessary permits</li>
+                </ul>
+              </div>
+              
+              <div>
+                <h4 className="text-lg font-semibold text-gray-800 mb-2">🚫 Prohibited Content</h4>
+                <ul className="list-disc list-inside space-y-1 text-sm">
+                  <li>No discriminatory, hateful, or offensive content</li>
+                  <li>No illegal activities or promotion of illegal substances</li>
+                  <li>No misleading or fraudulent information</li>
+                  <li>No events that may cause harm to participants</li>
+                </ul>
+              </div>
+              
+              <div>
+                <h4 className="text-lg font-semibold text-gray-800 mb-2">💼 Responsibilities</h4>
+                <ul className="list-disc list-inside space-y-1 text-sm">
+                  <li>Provide clear event descriptions and requirements</li>
+                  <li>Maintain professional communication with attendees</li>
+                  <li>Update event information if changes occur</li>
+                  <li>Ensure venue accessibility and safety standards</li>
+                </ul>
+              </div>
+              
+              <div>
+                <h4 className="text-lg font-semibold text-gray-800 mb-2">📞 Support & Liability</h4>
+                <ul className="list-disc list-inside space-y-1 text-sm">
+                  <li>Platform provides listing services only</li>
+                  <li>Event organizers are solely responsible for their events</li>
+                  <li>Report any issues or violations to our support team</li>
+                  <li>Platform reserves the right to remove non-compliant events</li>
+                </ul>
+              </div>
+              
+              <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+                <p className="text-sm text-yellow-800">
+                  <strong>Important:</strong> By proceeding, you acknowledge that you have read, understood, and agree to comply with all the above rules and guidelines. Violation of these terms may result in event removal and account suspension.
+                </p>
+              </div>
+            </div>
+            
+            <div className="flex justify-end space-x-4 mt-8">
+              <button
+                onClick={() => setShowRulesModal(false)}
+                className="px-6 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleRulesAgreement}
+                className="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+              >
+                I Agree - Proceed to Host Event
+              </button>
+            </div>
           </div>
         </div>
       )}

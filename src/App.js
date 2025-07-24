@@ -18,6 +18,7 @@ import ExploreCategory from "./pages/ExploreCategory";
 import EventDetails from "./pages/EventDetails";
 import HostEvent from "./pages/HostEvent";
 import EventMoments from "./pages/EventMoments";
+import SharedPlans from "./pages/SharedPlans";
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
         <Route path="/TourCategories" element={<TourCategories />} />
         <Route path="/HostEvent" element={<HostEvent />} />     
         <Route path="/EventMoments" element={<EventMoments />} />     
+        <Route path="/SharedPlans" element={<SharedPlans />} />     
 
         <Route
           path="/dashboard"

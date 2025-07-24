@@ -1183,22 +1183,36 @@ const DestinationExplorer = () => {
           </div>
           
           {/* Event list tooltip on hover */}
-          <div className="absolute hidden group-hover:block bottom-full left-0 mb-2 w-72 bg-white rounded-lg shadow-lg p-4 z-10 border border-gray-100">
-            <ul className="space-y-3">
-              {destination.events.map((event, index) => (
-                <li key={index} className="text-sm">
-                  <div className="font-medium text-gray-900 truncate">{event.name}</div>
-                  <div className="flex items-start text-gray-600 mt-1">
-                    <MapPin className="w-3 h-3 mt-0.5 mr-1.5 flex-shrink-0" />
-                    <span className="text-xs">{event.location}</span>
-                  </div>
-                </li>
-              ))}
-            </ul>
-            {destination.events.length === 0 && (
-              <p className="text-sm text-gray-500">No upcoming events</p>
-            )}
+          <div className="absolute hidden group-hover:block bottom-full left-0 w-72 bg-white rounded-lg shadow-lg p-4 z-10 border border-gray-100">
+  <ul className="space-y-3">
+    {destination.events.map((event, index) => (
+      <li key={index} className="text-sm flex justify-between items-start">
+        <div className="flex-1">
+          <div className="font-medium text-gray-900 truncate">{event.name}</div>
+          <div className="flex items-start text-gray-600 mt-1">
+            <MapPin className="w-3 h-3 mt-0.5 mr-1.5 flex-shrink-0" />
+            <span className="text-xs">{event.location}</span>
           </div>
+        </div>
+        <a 
+          href="/eventDetails" 
+          className="ml-2 px-3 py-1 bg-blue-500 text-white text-xs rounded hover:bg-blue-600 transition-colors"
+          onClick={(e) => {
+            e.preventDefault();
+            // You can add additional logic here before navigation
+            window.location.href = "/eventDetails";
+            // Or use your preferred routing method (React Router, Next.js router, etc.)
+          }}
+        >
+          Join
+        </a>
+      </li>
+    ))}
+  </ul>
+  {destination.events.length === 0 && (
+    <p className="text-sm text-gray-500">No upcoming events</p>
+  )}
+</div>
         </div>
         
         <button
