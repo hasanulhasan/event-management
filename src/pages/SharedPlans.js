@@ -6,276 +6,179 @@ const SharePlanTourPage = () => {
     {
       id: 1,
       title: "Cox's Bazar Beach Trip",
-      organizer: "আহমেদ হাসান",
+      organizer: "Ahmed Hassan",
       location: "Cox's Bazar",
       duration: "3 Days 2 Nights",
-      budget: "৳8,000 per person",
+      budget: "$95 per person",
       maxPeople: 8,
       currentJoined: 3,
       startDate: "15 Feb 2025",
-      description: "সমুদ্র সৈকতে ৩ দিনের অসাধারণ ভ্রমণ। হোটেল বুকিং, খাবার এবং স্থানীয় ঘোরাঘুরি সব কিছু included।",
+      description: "Amazing 3-day sea beach vacation. Hotel booking, meals and local sightseeing all included.",
       itinerary: ["Day 1: Dhaka to Cox's Bazar", "Day 2: Beach activities & Inani Beach", "Day 3: Himchari & return"],
       comments: [
-        { id: 1, user: "সারা খান", text: "দারুণ plan! খরচ কি negotiate করা যাবে?", time: "2 hours ago" },
-        { id: 2, user: "রাহুল আহমেদ", text: "কোন হোটেল book করা হবে?", time: "1 hour ago" }
+        { id: 1, user: "Sara Khan", text: "Great plan! Can we negotiate the cost?", time: "2 hours ago" },
+        { id: 2, user: "Rahul Ahmed", text: "Which hotel will be booked?", time: "1 hour ago" }
       ],
-      interestedUsers: ["সারা খান", "রাহুল আহমেদ", "ফাতেমা বেগম"]
+      interestedUsers: ["Sara Khan", "Rahul Ahmed", "Fatema Begum"]
     },
     {
       id: 2,
       title: "Sylhet Tea Garden Adventure",
-      organizer: "ফারিয়া আক্তার",
+      organizer: "Faria Akter",
       location: "Sylhet",
       duration: "4 Days 3 Nights",
-      budget: "৳12,000 per person",
+      budget: "$140 per person",
       maxPeople: 6,
       currentJoined: 2,
       startDate: "22 Feb 2025",
-      description: "চা বাগান, জাফলং, রাতারগুল সহ সিলেটের সব দর্শনীয় স্থান। AC transport এবং ভালো হোটেল।",
+      description: "Visit all Sylhet attractions including tea gardens, Jaflong, Ratargul with AC transport and good hotels.",
       itinerary: ["Day 1: Dhaka to Sylhet", "Day 2: Tea Gardens & Jaflong", "Day 3: Ratargul & Bichnakandi", "Day 4: Return"],
       comments: [
-        { id: 1, user: "তানিয়া রহমান", text: "রাতারগুল এ boat ride আছে?", time: "3 hours ago" }
+        { id: 1, user: "Tania Rahman", text: "Is there boat ride at Ratargul?", time: "3 hours ago" }
       ],
-      interestedUsers: ["তানিয়া রহমান", "কামাল উদ্দিন"]
+      interestedUsers: ["Tania Rahman", "Kamal Uddin"]
     },
     {
       id: 3,
       title: "Sajek Valley Hill Track",
-      organizer: "মোহাম্মদ করিম",
+      organizer: "Mohammad Karim",
       location: "Sajek Valley",
       duration: "2 Days 1 Night",
-      budget: "৳6,500 per person",
+      budget: "$76 per person",
       maxPeople: 10,
       currentJoined: 5,
       startDate: "28 Feb 2025",
-      description: "সাজেক ভ্যালির মেঘের রাজ্যে হারিয়ে যান। Sunrise point, cloud touching এবং tribal culture experience।",
+      description: "Get lost in the cloud kingdom of Sajek Valley. Sunrise point, cloud touching and tribal culture experience.",
       itinerary: ["Day 1: Dhaka to Sajek, Evening tribal show", "Day 2: Sunrise point, Return"],
       comments: [
-        { id: 1, user: "নাফিস আলম", text: "Weather কেমন থাকবে এই সময়?", time: "5 hours ago" },
-        { id: 2, user: "রিনা পারভীন", text: "Single room পাওয়া যাবে?", time: "4 hours ago" }
+        { id: 1, user: "Nafis Alam", text: "How will the weather be at this time?", time: "5 hours ago" },
+        { id: 2, user: "Rina Parvin", text: "Can we get single rooms?", time: "4 hours ago" }
       ],
-      interestedUsers: ["নাফিস আলম", "রিনা পারভীন", "সোহেল রানা"]
+      interestedUsers: ["Nafis Alam", "Rina Parvin", "Sohel Rana"]
     },
     {
       id: 4,
       title: "Sundarbans Mangrove Safari",
-      organizer: "ডা. রফিক উল্লাহ",
+      organizer: "Dr. Rafiq Ullah",
       location: "Sundarbans",
       duration: "3 Days 2 Nights",
-      budget: "৳15,000 per person",
+      budget: "$175 per person",
       maxPeople: 12,
       currentJoined: 4,
       startDate: "5 Mar 2025",
-      description: "বিশ্ব ঐতিহ্য সুন্দরবনে Royal Bengal Tiger দেখার সুযোগ। Luxury boat এ থাকা খাওয়া।",
+      description: "World Heritage Sundarbans with Royal Bengal Tiger spotting opportunity. Luxury boat accommodation and meals.",
       itinerary: ["Day 1: Dhaka to Mongla, Board boat", "Day 2: Deep forest safari", "Day 3: Bird watching, Return"],
       comments: [],
-      interestedUsers: ["আসমা খাতুন", "জাহিদ হাসান"]
+      interestedUsers: ["Asma Khatun", "Zahid Hassan"]
     },
     {
       id: 5,
       title: "Rangamati Lake Cruise",
-      organizer: "সুমিত্রা চাকমা",
+      organizer: "Sumitra Chakma",
       location: "Rangamati",
       duration: "2 Days 1 Night",
-      budget: "৳7,500 per person",
+      budget: "$88 per person",
       maxPeople: 8,
       currentJoined: 3,
       startDate: "10 Mar 2025",
-      description: "কাপ্তাই লেকে cruise, tribal museum, hanging bridge এবং Shuvolong waterfall।",
+      description: "Kaptai Lake cruise, tribal museum, hanging bridge and Shuvolong waterfall.",
       itinerary: ["Day 1: Chittagong to Rangamati, Lake cruise", "Day 2: Tribal museum, Return"],
       comments: [
-        { id: 1, user: "অর্ণব দাস", text: "Boat এ AC আছে?", time: "6 hours ago" }
+        { id: 1, user: "Arnab Das", text: "Does the boat have AC?", time: "6 hours ago" }
       ],
-      interestedUsers: ["অর্ণব দাস", "প্রিয়াঙ্কা বর্মন"]
+      interestedUsers: ["Arnab Das", "Priyanka Barman"]
     },
     {
       id: 6,
       title: "Bandarban Hill Adventure",
-      organizer: "তৌহিদ ইসলাম",
+      organizer: "Touhid Islam",
       location: "Bandarban",
       duration: "4 Days 3 Nights",
-      budget: "৳18,000 per person",
+      budget: "$210 per person",
       maxPeople: 6,
       currentJoined: 1,
       startDate: "15 Mar 2025",
-      description: "Nilgiri, Boga Lake, Nafakhum waterfall সহ বান্দরবানের সব adventure spots।",
+      description: "All Bandarban adventure spots including Nilgiri, Boga Lake, Nafakhum waterfall.",
       itinerary: ["Day 1: Dhaka to Bandarban", "Day 2: Nilgiri hills", "Day 3: Boga Lake trek", "Day 4: Nafakhum, Return"],
       comments: [
-        { id: 1, user: "রিয়াদ করিম", text: "Trekking difficult কতটা?", time: "1 day ago" }
+        { id: 1, user: "Riad Karim", text: "How difficult is the trekking?", time: "1 day ago" }
       ],
-      interestedUsers: ["রিয়াদ করিম"]
+      interestedUsers: ["Riad Karim"]
     },
     {
       id: 7,
       title: "Saint Martin Island Paradise",
-      organizer: "নাদিয়া সুলতানা",
+      organizer: "Nadia Sultana",
       location: "Saint Martin",
       duration: "3 Days 2 Nights",
-      budget: "৳14,000 per person",
+      budget: "$164 per person",
       maxPeople: 10,
       currentJoined: 6,
       startDate: "20 Mar 2025",
-      description: "বাংলাদেশের একমাত্র coral island। Crystal clear water, coral reef এবং fresh seafood।",
+      description: "Bangladesh's only coral island. Crystal clear water, coral reef and fresh seafood.",
       itinerary: ["Day 1: Dhaka to Teknaf, Ship to St. Martin", "Day 2: Island exploration, Snorkeling", "Day 3: Return journey"],
       comments: [
-        { id: 1, user: "শাহরিয়ার রহমান", text: "Sea sickness এর জন্য কি ব্যবস্থা?", time: "12 hours ago" }
+        { id: 1, user: "Shahriar Rahman", text: "What arrangement for sea sickness?", time: "12 hours ago" }
       ],
-      interestedUsers: ["শাহরিয়ার রহমান", "তাসনিম আক্তার", "মাহফুজ আলম", "লামিয়া খান"]
+      interestedUsers: ["Shahriar Rahman", "Tasnim Akter", "Mahfuz Alam", "Lamia Khan"]
     },
     {
       id: 8,
       title: "Paharpur Buddhist Vihara",
-      organizer: "ড. আনিসুজ্জামান",
+      organizer: "Dr. Anisuzzaman",
       location: "Naogaon",
       duration: "2 Days 1 Night",
-      budget: "৳5,000 per person",
+      budget: "$58 per person",
       maxPeople: 15,
       currentJoined: 8,
       startDate: "25 Mar 2025",
-      description: "UNESCO World Heritage Site পাহাড়পুর বৌদ্ধ বিহার এবং আশেপাশের ঐতিহাসিক স্থান।",
+      description: "UNESCO World Heritage Site Paharpur Buddhist Vihara and surrounding historical places.",
       itinerary: ["Day 1: Dhaka to Naogaon, Paharpur visit", "Day 2: Local archaeological sites, Return"],
       comments: [],
-      interestedUsers: ["ফরিদ আহমেদ", "শাহনাজ পারভীন", "আব্দুল কাদের"]
+      interestedUsers: ["Farid Ahmed", "Shahnaz Parvin", "Abdul Kader"]
     },
     {
       id: 9,
       title: "Chittagong Hill Tracts",
-      organizer: "অংকুর বড়ুয়া",
+      organizer: "Ankur Barua",
       location: "Khagrachari",
       duration: "5 Days 4 Nights",
-      budget: "৳20,000 per person",
+      budget: "$235 per person",
       maxPeople: 8,
       currentJoined: 2,
       startDate: "1 Apr 2025",
-      description: "পাহাড়ি অঞ্চলের উপজাতীয় সংস্কৃতি, আলুটিলা গুহা, waterfall এবং natural beauty।",
+      description: "Hill area tribal culture, Alutila cave, waterfall and natural beauty.",
       itinerary: ["Day 1: Dhaka to Khagrachari", "Day 2-4: Hill exploration", "Day 5: Return"],
       comments: [
-        { id: 1, user: "মিম আক্তার", text: "Single girls এর জন্য safe?", time: "2 days ago" }
+        { id: 1, user: "Mim Akter", text: "Is it safe for single girls?", time: "2 days ago" }
       ],
-      interestedUsers: ["মিম আক্তার", "রায়হান চৌধুরী"]
+      interestedUsers: ["Mim Akter", "Raihan Chowdhury"]
     },
     {
       id: 10,
       title: "Kuakata Sea Beach Sunset",
-      organizer: "সাকিব হাসান",
+      organizer: "Sakib Hassan",
       location: "Kuakata",
       duration: "2 Days 1 Night",
-      budget: "৳6,000 per person",
+      budget: "$70 per person",
       maxPeople: 12,
       currentJoined: 9,
       startDate: "8 Apr 2025",
-      description: "সূর্যোদয় ও সূর্যাস্ত দুটোই দেখা যায় এমন বিরল সমুদ্র সৈকত। Rakhine cultural show included।",
+      description: "Rare sea beach where you can see both sunrise and sunset. Rakhine cultural show included.",
       itinerary: ["Day 1: Dhaka to Kuakata, Sunset view", "Day 2: Sunrise, Rakhine village, Return"],
       comments: [
-        { id: 1, user: "তামান্না আফরিন", text: "Photography এর জন্য perfect!", time: "8 hours ago" }
+        { id: 1, user: "Tamanna Afrin", text: "Perfect for photography!", time: "8 hours ago" }
       ],
-      interestedUsers: ["তামান্না আফরিন", "ইকবাল হোসেন", "রুমা বেগম"]
-    },
-    {
-      id: 11,
-      title: "Srimangal Tea Capital Tour",
-      organizer: "প্রদীপ কুমার দাস",
-      location: "Srimangal",
-      duration: "3 Days 2 Nights",
-      budget: "৳9,500 per person",
-      maxPeople: 10,
-      currentJoined: 4,
-      startDate: "12 Apr 2025",
-      description: "চা রাজধানী শ্রীমঙ্গলে 7 layer tea, Lawachara National Park এবং tribal village visit।",
-      itinerary: ["Day 1: Dhaka to Srimangal", "Day 2: Tea gardens, Lawachara", "Day 3: Tribal culture, Return"], 
-      comments: [
-        { id: 1, user: "নুসরাত জাহান", text: "বৃষ্টির সময় কি করব?", time: "1 day ago" }
-      ],
-      interestedUsers: ["নুসরাত জাহান", "হাবিব উল্লাহ"]
-    },
-    {
-      id: 12,
-      title: "Mahasthangarh Ancient City",
-      organizer: "অধ্যাপক রশিদ হাসান",
-      location: "Bogura",
-      duration: "2 Days 1 Night", 
-      budget: "৳4,500 per person",
-      maxPeople: 20,
-      currentJoined: 12,
-      startDate: "18 Apr 2025",
-      description: "বাংলাদেশের প্রাচীনতম শহর মহাস্থানগড় এবং আশেপাশের ঐতিহাসিক নিদর্শন।",
-      itinerary: ["Day 1: Dhaka to Bogura, Mahasthangarh", "Day 2: Museum, Return"],
-      comments: [],
-      interestedUsers: ["শামীম আক্তার", "মাসুদ রানা", "সেলিনা খাতুন", "আরিফ হোসেন"]
-    },
-    {
-      id: 13,
-      title: "Jaflong Stone Collection",
-      organizer: "রাজীব চৌধুরী", 
-      location: "Jaflong, Sylhet",
-      duration: "3 Days 2 Nights",
-      budget: "৳11,000 per person",
-      maxPeople: 8,
-      currentJoined: 3,
-      startDate: "25 Apr 2025",
-      description: "জাফলং এর পাথর সংগ্রহ দেখা, Khasi village এবং crystal clear Piain river।",
-      itinerary: ["Day 1: Dhaka to Sylhet to Jaflong", "Day 2: Stone quarry, Khasi village", "Day 3: Return"],
-      comments: [
-        { id: 1, user: "কবীর উদ্দিন", text: "Border area তে কি problem হবে?", time: "3 days ago" }
-      ],
-      interestedUsers: ["কবীর উদ্দিন", "শাহানা পারভীন"]  
-    },
-    {
-      id: 14,
-      title: "Sitakunda Eco Park Adventure",
-      organizer: "বিপ্লব দাস",
-      location: "Sitakunda",
-      duration: "2 Days 1 Night",
-      budget: "৳5,500 per person", 
-      maxPeople: 15,
-      currentJoined: 7,
-      startDate: "2 May 2025",
-      description: "Chandranath hill, botanical garden, waterfall এবং adventure activities।",
-      itinerary: ["Day 1: Dhaka to Sitakunda, Hill climbing", "Day 2: Botanical garden, Return"],
-      comments: [
-        { id: 1, user: "রিফাত আলম", text: "Trekking shoes লাগবে?", time: "4 hours ago" }
-      ],
-      interestedUsers: ["রিফাত আলম", "সুমাইয়া খান", "জসিম উদ্দিন"]
-    },
-    {
-      id: 15,
-      title: "Barisal Floating Market",
-      organizer: "আল-আমিন শেখ",
-      location: "Barisal", 
-      duration: "2 Days 1 Night",
-      budget: "৳6,500 per person",
-      maxPeople: 12,
-      currentJoined: 5,
-      startDate: "8 May 2025",
-      description: "ভাসমান বাজার, গুয়াবা বাগান এবং river cruise। Local খাবারের স্বাদ নিন।",
-      itinerary: ["Day 1: Dhaka to Barisal, Floating market", "Day 2: Guava gardens, Return"],
-      comments: [],
-      interestedUsers: ["সালমা খাতুন", "ফয়সাল আহমেদ", "রেবেকা সুলতানা"]
-    },
-    {
-      id: 16,
-      title: "Teknaf Beach & Myanmar Border",
-      organizer: "জাহাঙ্গীর আলম",
-      location: "Teknaf",
-      duration: "3 Days 2 Nights", 
-      budget: "৳10,000 per person",
-      maxPeople: 10,
-      currentJoined: 6,
-      startDate: "15 May 2025",
-      description: "বাংলাদেশের সর্বদক্ষিণের সৈকত, Myanmar border এবং সমুদ্র সৈকতে seafood।",
-      itinerary: ["Day 1: Dhaka to Teknaf", "Day 2: Beach activities, Border visit", "Day 3: Return"],
-      comments: [
-        { id: 1, user: "নাহিদ হাসান", text: "Border crossing যাওয়া যাবে?", time: "6 hours ago" }
-      ],
-      interestedUsers: ["নাহিদ হাসান", "সাবিনা ইয়াসমিন", "করিম উল্লাহ"]
+      interestedUsers: ["Tamanna Afrin", "Ikbal Hosen", "Ruma Begum"]
     }
   ]);
 
-   const [joinedPlans, setJoinedPlans] = useState(new Set());
+  const [joinedPlans, setJoinedPlans] = useState(new Set());
   const [showJoinForm, setShowJoinForm] = useState(null);
   const [showComments, setShowComments] = useState(null);
   const [showDetails, setShowDetails] = useState(null);
   const [showAddForm, setShowAddForm] = useState(false);
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const [newComment, setNewComment] = useState('');
   const [joinFormData, setJoinFormData] = useState({
     name: '',
@@ -322,7 +225,7 @@ const SharePlanTourPage = () => {
             ...plan, 
             comments: [...plan.comments, {
               id: Date.now(),
-              user: "আপনি", 
+              user: "You", 
               text: newComment,
               time: "Just now"
             }]
@@ -330,6 +233,45 @@ const SharePlanTourPage = () => {
         : plan
     ));
     setNewComment('');
+  };
+
+  const handleCreatePlan = () => {
+    if (!newPlanData.title || !newPlanData.organizer || !newPlanData.location || !newPlanData.budget) {
+      alert('Please fill in all required fields (Title, Organizer, Location, Budget)');
+      return;
+    }
+
+    const newPlan = {
+      id: Date.now(),
+      title: newPlanData.title,
+      organizer: newPlanData.organizer,
+      location: newPlanData.location,
+      duration: newPlanData.duration || '2 Days 1 Night',
+      budget: newPlanData.budget,
+      maxPeople: parseInt(newPlanData.maxPeople) || 10,
+      currentJoined: 0,
+      startDate: newPlanData.startDate || 'TBD',
+      description: newPlanData.description || 'Tour description will be updated soon.',
+      itinerary: newPlanData.itinerary.filter(item => item.trim() !== '') || ['Day 1: Tour begins'],
+      comments: [],
+      interestedUsers: []
+    };
+
+    setTourPlans(prev => [newPlan, ...prev]);
+    setNewPlanData({
+      title: '',
+      organizer: '',
+      location: '',
+      duration: '',
+      budget: '',
+      maxPeople: '',
+      startDate: '',
+      description: '',
+      itinerary: ['', '', '']
+    });
+    setShowAddForm(false);
+    setShowSuccessMessage(true);
+    setTimeout(() => setShowSuccessMessage(false), 3000);
   };
 
   return (
@@ -340,9 +282,9 @@ const SharePlanTourPage = () => {
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-3xl font-bold bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
-                Tour Plan Share করুন
+                Share Your Tour Plans
               </h1>
-              <p className="text-gray-600 mt-1">আপনার ভ্রমণ পরিকল্পনা share করুন এবং সাথী খুঁজুন</p>
+              <p className="text-gray-600 mt-1">Share your travel plans and find travel companions</p>
             </div>
             <button 
               onClick={() => setShowAddForm(true)}
@@ -354,6 +296,23 @@ const SharePlanTourPage = () => {
           </div>
         </div>
       </div>
+
+      {/* Success Message */}
+      {showSuccessMessage && (
+        <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50">
+          <div className="bg-white border border-green-200 rounded-lg shadow-lg p-6 max-w-sm">
+            <div className="flex items-center space-x-3">
+              <div className="flex-shrink-0">
+                <CheckCircle className="h-8 w-8 text-green-500" />
+              </div>
+              <div>
+                <h3 className="text-lg font-medium text-gray-900">Success!</h3>
+                <p className="text-sm text-gray-600">Tour plan created successfully.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Tour Plans */}
       <div className="max-w-6xl mx-auto px-4 py-8">
@@ -425,6 +384,8 @@ const SharePlanTourPage = () => {
                       </div>
                     </div>
 
+                    <p className="text-gray-700 mb-4 leading-relaxed">{plan.description}</p>
+
                     {/* Itinerary */}
                     <div className="bg-gray-50 rounded-lg p-4 mb-4">
                       <h4 className="font-semibold text-gray-800 mb-2">Itinerary:</h4>
@@ -434,25 +395,6 @@ const SharePlanTourPage = () => {
                         ))}
                       </ul>
                     </div>
-
-                    {/* Interested Users */}
-                    {plan.interestedUsers.length > 0 && (
-                      <div className="mb-4">
-                        <div className="flex items-center space-x-2 mb-2">
-                          <Eye size={16} className="text-blue-500" />
-                          <span className="text-sm font-medium text-gray-700">
-                            {plan.interestedUsers.length} জন interested:
-                          </span>
-                        </div>
-                        <div className="flex flex-wrap gap-2">
-                          {plan.interestedUsers.map((user, index) => (
-                            <span key={index} className="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">
-                              {user}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    )}
                   </div>
 
                   {/* Right Side - Actions */}
@@ -474,7 +416,7 @@ const SharePlanTourPage = () => {
                         <button
                           onClick={() => handleJoinClick(plan.id)}
                           disabled={plan.currentJoined >= plan.maxPeople}
-                          className={`w-full py-4 rounded-lg font-bold text-lg transition-all duration-300 flex items-center justify-center space-x-2 ${
+                          className={`w-full py-4 rounded-lg font-bold text-lg transition-all duration-300 flex items-center justify-center space-x-2 mb-4 ${
                             plan.currentJoined >= plan.maxPeople
                               ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
                               : 'bg-gradient-to-r from-green-500 to-blue-500 text-white hover:shadow-lg transform hover:scale-105'
@@ -522,7 +464,7 @@ const SharePlanTourPage = () => {
                         type="text"
                         value={newComment}
                         onChange={(e) => setNewComment(e.target.value)}
-                        placeholder="আপনার প্রশ্ন বা মন্তব্য লিখুন..."
+                        placeholder="Write your question or comment..."
                         className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                         onKeyPress={(e) => e.key === 'Enter' && handleCommentSubmit(plan.id)}
                       />
@@ -566,21 +508,21 @@ const SharePlanTourPage = () => {
                       <form className="space-y-4">
                         <div>
                           <label className="block text-sm font-medium text-gray-700 mb-2">
-                            আপনার নাম *
+                            Your Name *
                           </label>
                           <input
                             type="text"
                             value={joinFormData.name}
                             onChange={(e) => setJoinFormData({...joinFormData, name: e.target.value})}
                             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            placeholder="আপনার পূর্ণ নাম লিখুন"
+                            placeholder="Enter your full name"
                             required
                           />
                         </div>
 
                         <div>
                           <label className="block text-sm font-medium text-gray-700 mb-2">
-                            মোবাইল নম্বর *
+                            Mobile Number *
                           </label>
                           <input
                             type="tel"
@@ -594,7 +536,7 @@ const SharePlanTourPage = () => {
 
                         <div>
                           <label className="block text-sm font-medium text-gray-700 mb-2">
-                            ইমেইল *
+                            Email *
                           </label>
                           <input
                             type="email"
@@ -608,34 +550,34 @@ const SharePlanTourPage = () => {
 
                         <div>
                           <label className="block text-sm font-medium text-gray-700 mb-2">
-                            জরুরি যোগাযোগ (Emergency Contact) *
+                            Emergency Contact *
                           </label>
                           <input
                             type="tel"
                             value={joinFormData.emergencyContact}
                             onChange={(e) => setJoinFormData({...joinFormData, emergencyContact: e.target.value})}
                             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            placeholder="পরিবারের কারো নম্বর"
+                            placeholder="Family member's number"
                             required
                           />
                         </div>
 
                         <div>
                           <label className="block text-sm font-medium text-gray-700 mb-2">
-                            অতিরিক্ত তথ্য (Optional)
+                            Additional Information (Optional)
                           </label>
                           <textarea
                             value={joinFormData.message}
                             onChange={(e) => setJoinFormData({...joinFormData, message: e.target.value})}
                             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 h-20 resize-none"
-                            placeholder="কোন বিশেষ প্রয়োজন বা প্রশ্ন থাকলে লিখুন..."
+                            placeholder="Any special requirements or questions..."
                           />
                         </div>
 
                         <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
                           <p className="text-sm text-yellow-800">
-                            <strong>লক্ষ্য করুন:</strong> Join করার পর organizer আপনার সাথে যোগাযোগ করবেন। 
-                            Tour এর সব details এবং payment information শেয়ার করা হবে।
+                            <strong>Note:</strong> After joining, the organizer will contact you. 
+                            All tour details and payment information will be shared.
                           </p>
                         </div>
 
@@ -668,7 +610,7 @@ const SharePlanTourPage = () => {
         {/* Load More */}
         <div className="text-center mt-12">
           <button className="bg-gradient-to-r from-green-500 to-blue-500 text-white px-8 py-4 rounded-full hover:shadow-xl transform hover:scale-105 transition-all duration-300 font-medium text-lg">
-            আরো Tour Plan দেখুন
+            Load More Tour Plans
           </button>
         </div>
       </div>
@@ -678,7 +620,7 @@ const SharePlanTourPage = () => {
         <div className="max-w-6xl mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <div>
-              <div className="text-3xl font-bold mb-2">16+</div>
+              <div className="text-3xl font-bold mb-2">10+</div>
               <div className="text-green-100">Active Tour Plans</div>
             </div>
             <div>
@@ -700,32 +642,33 @@ const SharePlanTourPage = () => {
       {/* Help Section */}
       <div className="bg-white py-12">
         <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-2xl font-bold text-gray-800 mb-4">কিভাবে কাজ করে?</h2>
+          <h2 className="text-2xl font-bold text-gray-800 mb-4">How It Works?</h2>
           <div className="grid md:grid-cols-3 gap-8 mt-8">
             <div className="text-center">
               <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Users className="text-blue-600" size={32} />
               </div>
-              <h3 className="font-semibold text-gray-800 mb-2">১. Plan Browse করুন</h3>
-              <p className="text-gray-600 text-sm">আপনার পছন্দের destination এর tour plan খুঁজুন</p>
+              <h3 className="font-semibold text-gray-800 mb-2">1. Browse Plans</h3>
+              <p className="text-gray-600 text-sm">Find tour plans for your favorite destinations</p>
             </div>
             <div className="text-center">
               <div className="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                 <MessageCircle className="text-green-600" size={32} />
               </div>
-              <h3 className="font-semibold text-gray-800 mb-2">২. Comment করুন</h3>
-              <p className="text-gray-600 text-sm">প্রশ্ন করুন এবং organizer এর সাথে কথা বলুন</p>
+              <h3 className="font-semibold text-gray-800 mb-2">2. Ask Questions</h3>
+              <p className="text-gray-600 text-sm">Comment and communicate with organizers</p>
             </div>
             <div className="text-center">
               <div className="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                 <UserPlus className="text-purple-600" size={32} />
               </div>
-              <h3 className="font-semibold text-gray-800 mb-2">৩. Join করুন</h3>
-              <p className="text-gray-600 text-sm">Form fill করে tour এ join করুন এবং adventure শুরু করুন</p>
+              <h3 className="font-semibold text-gray-800 mb-2">3. Join & Go</h3>
+              <p className="text-gray-600 text-sm">Fill the form, join the tour and start your adventure</p>
             </div>
           </div>
         </div>
       </div>
+
       {/* Add New Plan Modal */}
       {showAddForm && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
@@ -889,34 +832,7 @@ const SharePlanTourPage = () => {
                 </button>
                 <button
                   type="button"
-                  onClick={() => {
-                    if (!newPlanData.title || !newPlanData.organizer || !newPlanData.location || !newPlanData.budget) {
-                      alert('Please fill in all required fields');
-                      return;
-                    }
-
-                    const newPlan = {
-                      id: Date.now(),
-                      ...newPlanData,
-                      maxPeople: parseInt(newPlanData.maxPeople) || 10,
-                      currentJoined: 0,
-                      comments: []
-                    };
-
-                    setTourPlans(prev => [newPlan, ...prev]);
-                    setNewPlanData({
-                      title: '',
-                      organizer: '',
-                      location: '',
-                      duration: '',
-                      budget: '',
-                      maxPeople: '',
-                      startDate: '',
-                      description: '',
-                      itinerary: ['', '', '']
-                    });
-                    setShowAddForm(false);
-                  }}
+                  onClick={handleCreatePlan}
                   className="flex-1 bg-gradient-to-r from-orange-500 to-red-500 text-white py-3 rounded-lg font-medium hover:shadow-lg transition-all duration-300"
                 >
                   Create Tour Plan
