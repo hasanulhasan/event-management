@@ -71,6 +71,37 @@ const EventMomentsGallery = () => {
     setNewComment('');
   };
 
+
+// Inside your component
+const handleShare = async () => {
+  const currentPhoto = selectedEvent.photos[currentImageIndex];
+  const imageUrl = currentPhoto.url || currentPhoto.image || ''; // Adjust based on your data structure
+
+  if (!imageUrl) {
+    alert("Image URL not available");
+    return;
+  }
+
+  if (navigator.share) {
+    try {
+      await navigator.share({
+        title: selectedEvent.title || "Check out this photo!",
+        text: "Check out this event photo!",
+        url: imageUrl,
+      });
+    } catch (err) {
+      console.error("Share failed:", err);
+    }
+  } else {
+    try {
+      await navigator.clipboard.writeText(imageUrl);
+      alert("Link copied to clipboard!");
+    } catch (err) {
+      alert("Could not copy. Please copy manually.");
+    }
+  }
+};
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-12 px-4 sm:px-6">
       <div className="max-w-7xl mx-auto">
@@ -119,8 +150,7 @@ const EventMomentsGallery = () => {
   {/* Right two stacked images */}
   <div className="flex flex-col h-full col-span-1">
     {[1, 2].map((i) => (
-      <img
-        key={i}
+      <img key={i}
         src={event.photos[i]?.thumbnail}
         alt={`Event image ${i + 1}`}
         className="w-full h-1/2 object-cover cursor-pointer transition-transform duration-500 hover:scale-105"
@@ -214,11 +244,11 @@ const EventMomentsGallery = () => {
               {/* Gallery Content */}
               <div className="flex flex-col lg:flex-row h-full">
                 {/* Main Image Area */}
-                <div className="lg:w-3/4 bg-gray-900 flex items-center justify-center relative min-h-[50vh]">
+                <div className="lg:w-[65%] bg-gray-900 flex items-center justify-center relative min-h-[50vh]">
                   <img
                     src={selectedEvent.photos[currentImageIndex].url}
                     alt={`Event ${selectedEvent.id}`}
-                    className="max-h-[70vh] max-w-full object-contain"
+                    className=" max-w-full object-contain"
                     onError={(e) => {
                       e.target.src = `https://picsum.photos/id/${selectedEvent.id * 15 + currentImageIndex + 10}/800/600`;
                     }}
@@ -240,7 +270,7 @@ const EventMomentsGallery = () => {
                 </div>
 
                 {/* Info Sidebar */}
-                <div className="lg:w-1/4 p-6 overflow-y-auto border-l border-gray-200">
+                <div className="lg:w-[35%] p-6 overflow-y-auto border-l border-gray-200">
                   <div className="sticky top-0 bg-white pt-2 pb-4 z-10">
                     <h2 className="text-2xl font-bold mb-1 text-gray-900">{selectedEvent.name}</h2>
                     <div className="flex flex-col text-sm text-gray-500 mb-4 space-y-1">
@@ -265,24 +295,26 @@ const EventMomentsGallery = () => {
                     </div>
 
                     {/* Engagement */}
-                    <div className="flex items-center space-x-4 mb-6 border-b border-gray-100 pb-4">
-                      <button className="flex items-center space-x-2 text-gray-700 hover:text-red-500 transition-colors duration-200">
-                        {Math.random() > 0.5 ? (
-                          <FaHeart className="text-red-500" />
-                        ) : (
-                          <FaRegHeart />
-                        )}
-                        <span>{selectedEvent.photos[currentImageIndex].likes || 0}</span>
-                      </button>
-                      <button className="flex items-center space-x-2 text-gray-700 hover:text-blue-500 transition-colors duration-200">
-                        <FaComment />
-                        <span>{(comments[`${selectedEvent.id}-${selectedEvent.photos[currentImageIndex].id}`] || []).length}</span>
-                      </button>
-                      <button className="text-gray-700 hover:text-green-500 transition-colors duration-200">
-                        <FaShareAlt />
-                      </button>
-                    </div>
+                  <div className="flex items-center space-x-4 mb-6 border-b border-gray-100 pb-4">
+                    <button className="flex items-center space-x-2 text-gray-700 hover:text-red-500 transition-colors duration-200">
+                      {Math.random() > 0.5 ? (
+                        <FaHeart className="text-red-500" />
+                      ) : (
+                        <FaRegHeart />
+                      )}
+                      <span>{selectedEvent.photos[currentImageIndex].likes || 0}</span>
+                    </button>
+                    <button className="flex items-center space-x-2 text-gray-700 hover:text-blue-500 transition-colors duration-200">
+                      <FaComment />
+                      <span>
+                        {(comments[`${selectedEvent.id}-${selectedEvent.photos[currentImageIndex].id}`] || []).length}
+                      </span>
+                    </button>
+                    <button onClick={handleShare} className="text-gray-700 hover:text-green-500 transition-colors duration-200">
+                      <FaShareAlt />
+                    </button>
                   </div>
+                </div>
 
                   {/* Comments Section */}
                   <div className="mb-6">
