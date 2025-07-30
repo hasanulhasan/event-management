@@ -1,17 +1,22 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { Menu, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 export default function Navbar() {
   const navigate = useNavigate();
+  const location = useLocation();
   const user = localStorage.getItem("user");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleDropdown = () => setIsOpen((prev) => !prev);
   const dropdownRef = useRef(null);
+
+  const currentPath = location.pathname;
+  const isActive = (path) => currentPath === path ? "text-blue-600 font-semibold" : "text-gray-700";
+
 
   const handleLogout = () => {
     localStorage.removeItem("user");
@@ -50,31 +55,31 @@ export default function Navbar() {
           <div className="hidden md:flex items-center space-x-8">
             <a
               href="/"
-              className="text-gray-700 hover:text-blue-600 transition-colors"
+              className={`${isActive("/")} hover:text-blue-600 transition-colors`}
             >
               Home
             </a>
             <a
               href="/exploreEvents"
-              className="text-gray-700 hover:text-blue-600 transition-colors"
+              className={`${isActive("/exploreEvents")} hover:text-blue-600 transition-colors`}
             >
               Explore Events
             </a>
             <a
               href="/HostEvent"
-              className="text-gray-700 hover:text-blue-600 transition-colors"
+              className={`${isActive("/HostEvent")} hover:text-blue-600 transition-colors`}
             >
               Host an Event
             </a>
             <a
               href="/EventMoments"
-              className="text-gray-700 hover:text-blue-600 transition-colors"
+              className={`${isActive("/EventMoments")} hover:text-blue-600 transition-colors`}
             >
               Event Moments
             </a>
             <a
               href="/SharedPlans"
-              className="text-gray-700 hover:text-blue-600 transition-colors"
+              className={`${isActive("/SharedPlans")} hover:text-blue-600 transition-colors`}
             >
               Shared Plans
             </a>
@@ -88,19 +93,19 @@ export default function Navbar() {
              {isOpen && (
               <div className="absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg z-10">
                 <a
-                  href="/plan/active"
+                  href="/#"
                   className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                 >
                   Active Plans
                 </a>
                 <a
-                  href="/plan/history"
+                  href="/#"
                   className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                 >
                   Plan History
                 </a>
                 <a
-                  href="/plan/settings"
+                  href="/#"
                   className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                 >
                   Plan Settings

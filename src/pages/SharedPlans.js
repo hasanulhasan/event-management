@@ -277,7 +277,7 @@ const SharePlanTourPage = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-blue-50">
       {/* Header */}
-      <div className="bg-white/90 backdrop-blur-md shadow-lg sticky top-0 z-50">
+      <div className="bg-white/90 backdrop-blur-md shadow-lg sticky top-0 z-30">
         <div className="max-w-6xl mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div>
@@ -335,8 +335,6 @@ const SharePlanTourPage = () => {
                         <div className="text-sm text-gray-500">per person</div>
                       </div>
                     </div>
-
-                    <p className="text-gray-700 mb-4 leading-relaxed">{plan.description}</p>
 
                     {/* Plan Info Grid */}
                     <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
