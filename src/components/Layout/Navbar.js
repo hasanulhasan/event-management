@@ -216,12 +216,12 @@ export default function Navbar() {
             >
               Blog Travel Tips
             </a> */}
-            <a
+            {user && <a
               href="/dashboard"
               className="block px-3 py-2 text-gray-700 hover:text-blue-600"
             >
               Dashboard
-            </a>
+            </a>}
             {user ? (
               <button
                 onClick={handleLogout}
